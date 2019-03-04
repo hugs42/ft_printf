@@ -16,7 +16,10 @@
 # define FINISH			(0)
 
 int		ft_printf(const char *format, ...);
-
+int		ft_printf_parse(const char *format, va_list arg);
+int		ft_printf_char(const char *format,va_list arg);
+int		ft_printf_str(const char *format,va_list arg);
+int		ft_printf_int(const char *format,va_list arg);
 
 typedef struct			s_printf
 {
