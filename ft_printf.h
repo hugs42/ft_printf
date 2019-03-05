@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:53 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/05 16:03:35 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/05 19:13:02 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int		ft_printf_addr(const char *format,va_list arg);
 int		ft_printf_octal(const char *format,va_list arg);
 int		ft_printf_hex(const char *format,va_list arg, char c);
 int		ft_printf_unsigned_int(const char *format,va_list arg);
+int		ft_printf_double(const char *format,va_list arg);
+int		ft_printf_csp_case(const char *format, va_list arg, int i);
+int		ft_printf_diouxx_case(const char *format, va_list arg, int i);
+int		ft_is_diouxx(const char *format, va_list arg, int i);
+int		ft_printf_type_conversion(const char *format, va_list arg, int i);
 int		ft_putstrrev(char *str);
 
 typedef struct			s_printf

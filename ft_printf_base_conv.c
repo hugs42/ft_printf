@@ -12,18 +12,6 @@
 
 #include "ft_printf.h"
 
-int				ft_putstrrev(char *str)
-{
-	int len;
-	len = ft_strlen(str);
-	while (len + 1 > 0)
-	{
-		ft_putchar(str[len]);
-		len--;
-	}
-	return (SUCCESS);
-}
-
 int				ft_printf_octal(const char *format, va_list arg)
 {
 	int i;
