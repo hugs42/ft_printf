@@ -21,9 +21,28 @@ int		ft_printf_parse(const char *format, va_list arg)
 				ft_printf_str(format, arg);
 			else if (format[i] == 'd')
 				ft_printf_int(format, arg);
-			i++;
+			else if (format[i] == 'e')
+				break;
+			else if (format[i] == 'f')
+				break;
+			else if (format[i] == 'o')
+				break;
+			else if (format[i] == 's')
+				break;
+			else if (format[i] == 'u')
+				break;
+			else if (format[i] == 'x')
+				break;
+			else if (format[i] == '%')
+				break;
 			count_char++;
+			i++;
 		}
+//		else if (format[i] == '\\')
+//		{
+//			ft_putchar('\\');
+//			i++;
+//		}
 		else
 		{
 			ft_putchar(format[i]);
@@ -51,8 +70,9 @@ int		main(int argc, char **argv)
 	char nb1 = '6';
 	char nb2 = '9';
 	char *str = "8888888888";
-	ft_printf("Test ::%c::%c::%s::%c::%d::", nb1, nb, str, nb2, i);
+	ft_printf("ft_printf ::%c::%c::%s::%c::%d::%%", nb1, nb, str, nb2, i);
 	ft_putchar('\n');
-	printf("Test ::%c::%c::%s::%c::%d::", nb1, nb, str, nb2, i);
+	printf("printf    ::%c::%c::%s::%c::%d::%%", nb1, nb, str, nb2, i);
+	ft_putchar('\n');
 	return (0);
 }
