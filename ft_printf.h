@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/05 11:49:53 by hugsbord          #+#    #+#             */
+/*   Updated: 2019/03/05 16:03:35 by hugsbord         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -20,6 +32,11 @@ int		ft_printf_parse(const char *format, va_list arg);
 int		ft_printf_char(const char *format,va_list arg);
 int		ft_printf_str(const char *format,va_list arg);
 int		ft_printf_int(const char *format,va_list arg);
+int		ft_printf_addr(const char *format,va_list arg);
+int		ft_printf_octal(const char *format,va_list arg);
+int		ft_printf_hex(const char *format,va_list arg, char c);
+int		ft_printf_unsigned_int(const char *format,va_list arg);
+int		ft_putstrrev(char *str);
 
 typedef struct			s_printf
 {
