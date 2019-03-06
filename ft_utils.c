@@ -33,3 +33,5 @@ int		ft_is_diouxx(const char *format, va_list arg, int i)
 	else
 		return (FINISH);
 }
+
+int		ft_init_printf_struct(t_printf 

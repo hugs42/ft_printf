@@ -45,9 +45,12 @@ int		ft_putstrrev(char *str);
 
 typedef struct			s_printf
 {
-						int len;
-						int precision;
-						char *format;
+	bool				sign;
+	bool				zero;
+	bool				minus;
+	size_t				len;
+	int					precision;
+	char				*format;
 }						t_printf;
 
 #endif

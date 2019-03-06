@@ -38,10 +38,11 @@ int		ft_printf_diouxx_case(const char *format, va_list arg, int i)
 
 int		ft_printf_parse(const char *format, va_list arg)
 {
-	int i;
-	int count_char;
-	char c;
-	char *str;
+	int			i;
+	int			count_char;
+	char		c;
+	char		*str;
+	t_printf	*pformat;
 
 	i = 0;
 	count_char = 0;
