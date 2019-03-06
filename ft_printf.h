@@ -60,6 +60,8 @@ int		ft_is_diouxx(const char *format, va_list arg, int i);
 int		ft_printf_type_conversion(const char *format, va_list arg, int i);
 int		ft_init_flags_struct(t_flags *flags);
 int		ft_get_width(const char *format, int i);
+int		ft_isflag(const char *format, int i);
+int		ft_set_flags(const char *format,int i,t_flags *flags);
 int		ft_putstrrev(char *str);
 
 #endif

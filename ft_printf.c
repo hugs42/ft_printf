@@ -53,9 +53,9 @@ int		ft_printf_parse(const char *format, va_list arg)
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '.')
+			if (ft_isflag(format, i))
 			{
-				flags->precision = 1;
+				ft_set_flags(format, i, flags);
 				i++;
 			}
 			if (format[i] == '+')
