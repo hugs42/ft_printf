@@ -6,13 +6,13 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/05 18:13:06 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 15:41:25 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				ft_printf_double(const char *format,va_list arg)
+int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 {
 	double nbr;
 	int tmp;
@@ -27,7 +27,7 @@ int				ft_printf_double(const char *format,va_list arg)
 	return (SUCCESS);
 }
 
-int				ft_printf_unsigned_int(const char *format, va_list arg)
+int				ft_printf_unsigned_int(const char *format, va_list arg, t_flags *flags)
 {
 	unsigned int i;
 	char *str = NULL;
@@ -38,7 +38,7 @@ int				ft_printf_unsigned_int(const char *format, va_list arg)
 	return (SUCCESS);
 }
 
-int				ft_printf_int(const char *format, va_list arg)
+int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 {
 		int i;
 

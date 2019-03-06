@@ -5,17 +5,23 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/08/13 21:46:51 by hugsbord          #+#    #+#              #
-#    Updated: 2019/03/05 11:48:54 by hugsbord         ###   ########.fr        #
+#    Created: 2019/03/06 10:43:03 by hugsbord          #+#    #+#              #
+#    Updated: 2019/03/06 10:50:22 by hugsbord         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
+
 NAME	=	libftprintf.a
 
-CFLAGS	=	-Wall -Wextra -Werror -I ./$(DIRLIB)
+CFLAGS	=	-I ./$(DIRLIB)
 
 SRC	=	ft_printf.c \
-		main.c
+		ft_printf_csp.c \
+		ft_printf_nbr.c \
+		ft_printf_base_conv.c \
+		ft_printf_type_conversion.c \
+		ft_utils.c
 
 LIB	=	libft.a
 DIRLIB	=	libft/

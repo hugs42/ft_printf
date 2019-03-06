@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 19:02:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/05 19:07:27 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 15:14:45 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,20 @@ int		ft_is_diouxx(const char *format, va_list arg, int i)
 		return (FINISH);
 }
 
-int		ft_init_printf_struct(t_printf 
+int		ft_init_flags_struct(t_flags *flags)
+{
+	flags->flag = '0';
+	flags->sign = 1;
+	flags->sharp = 0;
+	flags->zero = 0;
+	flags->minus = 0;
+	flags->plus = 0;
+	flags->space = 0;
+	flags->width = 0;
+	flags->len = 0;
+	flags->len_min = 0;
+	flags->precision = 0;
+	flags->format = NULL;
+	return (SUCCESS);
+}
+

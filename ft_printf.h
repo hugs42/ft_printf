@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:53 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/05 19:13:02 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 15:38:15 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,40 @@
 # define ERROR			(-1)
 # define FINISH			(0)
 
-int		ft_printf(const char *format, ...);
-int		ft_printf_parse(const char *format, va_list arg);
-int		ft_printf_char(const char *format,va_list arg);
-int		ft_printf_str(const char *format,va_list arg);
-int		ft_printf_int(const char *format,va_list arg);
-int		ft_printf_addr(const char *format,va_list arg);
-int		ft_printf_octal(const char *format,va_list arg);
-int		ft_printf_hex(const char *format,va_list arg, char c);
-int		ft_printf_unsigned_int(const char *format,va_list arg);
-int		ft_printf_double(const char *format,va_list arg);
-int		ft_printf_csp_case(const char *format, va_list arg, int i);
-int		ft_printf_diouxx_case(const char *format, va_list arg, int i);
-int		ft_is_diouxx(const char *format, va_list arg, int i);
-int		ft_printf_type_conversion(const char *format, va_list arg, int i);
-int		ft_putstrrev(char *str);
-
-typedef struct			s_printf
+typedef struct			s_flags
 {
-	bool				sign;
-	bool				zero;
-	bool				minus;
+	char				flag;
+	int					sign;
+	int					sharp;
+	int					zero;
+	int					minus;
+	int					plus;
+	int					space;
+	int					width;
 	size_t				len;
+	size_t				len_min;
 	int					precision;
 	char				*format;
-}						t_printf;
+}						t_flags;
+
+
+
+int		ft_printf(const char *format, ...);
+int		ft_printf_parse(const char *format, va_list arg);
+int		ft_printf_char(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_str(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_int(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_addr(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_octal(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_hex(const char *format,va_list arg, char c, t_flags *flags);
+int		ft_printf_unsigned_int(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_double(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_csp_case(const char *format, va_list arg, int i, t_flags *flags);
+int		ft_printf_diouxx_case(const char *format, va_list arg, int i, t_flags *flags);
+int		ft_is_diouxx(const char *format, va_list arg, int i);
+int		ft_printf_type_conversion(const char *format, va_list arg, int i);
+int		ft_init_flags_struct(t_flags *flags);
+int		ft_get_width(const char *format, int i);
+int		ft_putstrrev(char *str);
 
 #endif
