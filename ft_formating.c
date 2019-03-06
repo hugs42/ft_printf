@@ -6,24 +6,24 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:29:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 18:46:37 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 18:57:19 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int             ft_set_flags(char c, t_flags *flags)
+int		ft_set_flags(const char *format, int i, t_flags *flags)
 {
-		if (c == '#')
+		if (format[i] == '#')
 				flags->sharp = 1;
-		if (c == '-')
+		if (format[i] == '-')
 				flags->minus = 1;
-		if (c == '+')
-				flags->plus =1;
-		if (c == ' ')
-				flags->space =1;
-		if (c == '0')
-				flags->zero =1;
+		if (format[i] == '+')
+				flags->plus = 1;
+		if (format[i] == ' ')
+				flags->space = 1;
+		if (format[i] == '0')
+				flags->zero = 1;
 		return (SUCCESS);
 }
 

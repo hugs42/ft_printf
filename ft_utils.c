@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 19:02:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 18:50:33 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 19:05:41 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ int				ft_putstrrev(char *str)
 		len--;
 	}
 	return (SUCCESS);
+}
+
+int		ft_isflag(const char *format, int i)
+{
+	if ((format[i] == '#') || (format[i] == '-') || (format[i] ==
+						'+') || (format[i] == ' ') || (format[i] == '.') ||
+							(format[i] == 'h'))
+		return (SUCCESS);
+	else
+		return (FINISH);
+
 }
 
 int		ft_is_diouxx(const char *format, va_list arg, int i)
