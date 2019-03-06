@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 16:48:28 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 15:32:51 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 18:49:15 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int		ft_printf_char(const char *format, va_list arg, t_flags *flags)
 
 	flags->flag = 'c';
 	c = va_arg(arg, int);
+	if (!c)
+		return (ERROR);
+	if (flags-> minus == 1 && flags->width != 0)
+		ft_putchar(c);
 	ft_putchar(c);
 	return (SUCCESS);
 }
@@ -29,6 +33,8 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 
 	flags->flag = 's';
 	str = va_arg(arg, char *);
+	if (str == NULL || ft_strcmp(str, "") == 0)
+		return (ERROR);
 	ft_putstr(str);
 	return (SUCCESS);
 }
