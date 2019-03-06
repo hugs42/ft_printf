@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:29:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 18:57:19 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 19:08:10 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 int		ft_set_flags(const char *format, int i, t_flags *flags)
 {
-		if (format[i] == '#')
-				flags->sharp = 1;
-		if (format[i] == '-')
-				flags->minus = 1;
-		if (format[i] == '+')
-				flags->plus = 1;
-		if (format[i] == ' ')
-				flags->space = 1;
-		if (format[i] == '0')
-				flags->zero = 1;
-		return (SUCCESS);
+	if (format[i] == '#')
+		flags->sharp = 1;
+	if (format[i] == '-')
+		flags->minus = 1;
+	if (format[i] == '+')
+		flags->plus = 1;
+	if (format[i] == ' ')
+		flags->space = 1;
+	if (format[i] == '0')
+		flags->zero = 1;
+	if (format[i] == '.')
+		flags->precision = 1;
+	return (SUCCESS);
 }
 
 int		ft_get_width(const char *format, int i)
