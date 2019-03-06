@@ -25,7 +25,7 @@ int		ft_set_flags(const char *format, int i, t_flags *flags)
 	if (format[i] == '+')
 		flags->plus = 1;
 	else
-		flags->minus = 0;
+		flags->plus = 0;
 	if (format[i] == ' ')
 		flags->space = 1;
 	else

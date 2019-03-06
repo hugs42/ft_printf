@@ -46,25 +46,20 @@ int		ft_printf_parse(const char *format, va_list arg)
 	i = 0;
 	count_char = 0;
 	flags = malloc(sizeof(t_flags));
-	if ((ft_init_flags_struct(flags)) != SUCCESS)
-		return (ERROR);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
+			if ((ft_init_flags_struct(flags)) != SUCCESS)
+						return (ERROR);
 			i++;
 			if (ft_isflag(format, i))
 			{
 				ft_set_flags(format, i, flags);
 				i++;
 			}
-			if (format[i] == '+')
-			{
-				flags->plus = 1;
-				i++;
-			}
 			else
-				flags->plus = 0;
+				
 			if (ft_isdigit(format[i]))
 			{
 				flags->width = ft_get_width(format, i);
@@ -106,6 +101,7 @@ int		main(int argc, char **argv)
 {
 	int i = 19;
 	int j = 123;
+	int k = 42;
 	float fl = 42.15;
 	unsigned int ui = 1849494;
 //	char nb  = '7';
@@ -116,8 +112,8 @@ int		main(int argc, char **argv)
 	argv = NULL;
 	argc = 2;
 
-	ft_printf("ft_printf  ::%c::%s::%p::%d::%i::%o::%u::%x::%X::%%::%f::", nb1, str, str2, i, j, i,ui,j, j,fl);
-	printf("printf     ::%c::%s::%p::%d::%i::%o::%u::%x::%X::%%::%f::", nb1, str, str2, i, j,i, ui, j,j, fl);
+	ft_printf("ft_printf  ::%c::%s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::", nb1, str, str2, i, j, i,ui,j, j,fl, k);
+	printf("printf     ::%c::%s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::", nb1, str, str2, i, j,i, ui, j,j, fl, k);
 	ft_putchar('\n');
 	return (0);
 }
