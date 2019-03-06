@@ -37,7 +37,6 @@ int		ft_is_diouxx(const char *format, va_list arg, int i)
 int		ft_init_flags_struct(t_flags *flags)
 {
 	flags->flag = '0';
-	flags->sign = 1;
 	flags->sharp = 0;
 	flags->zero = 0;
 	flags->minus = 0;

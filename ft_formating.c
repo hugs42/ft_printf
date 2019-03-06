@@ -12,6 +12,21 @@
 
 #include "ft_printf.h"
 
+int             ft_set_flags(char c, t_flags *flags)
+{
+        if (c == '#')
+                flags->sharp = 1;
+        if (c == '-')
+                flags->minus = 1;
+        if (c == '+')
+                flags->plus =1;
+        if (c == ' ')
+                flags->space =1;
+        if (c == '0')
+                flags->zero =1;
+        return (SUCCESS);
+}
+
 int		ft_get_width(const char *format, int i)
 {
 	int width;

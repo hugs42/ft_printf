@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:53 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 15:38:15 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 18:21:47 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 typedef struct			s_flags
 {
 	char				flag;
-	int					sign;
 	int					sharp;
 	int					zero;
 	int					minus;

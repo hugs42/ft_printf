@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 15:40:36 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 18:43:32 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,17 @@ int		ft_printf_parse(const char *format, va_list arg)
 		{
 			i++;
 			if (format[i] == '.')
-				break;
+			{
+				flags->precision = 1;
+				i++;
+			}
+			if (format[i] == '+')
+			{
+				flags->plus = 1;
+				i++;
+			}
+			else
+				flags->plus = 0;
 			if (ft_isdigit(format[i]))
 			{
 				flags->width = ft_get_width(format, i);

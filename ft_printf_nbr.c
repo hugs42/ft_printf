@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 15:41:25 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/06 18:31:02 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 {
 		int i;
 
+		flags->flag = 'd';
 		i = va_arg(arg, int);
+		if ((flags->plus == 1) && (i >= 0))
+			ft_putchar('+');
 		ft_putnbr(i);
 		return (SUCCESS);
 }
