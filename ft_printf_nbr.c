@@ -6,13 +6,13 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 17:00:20 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 17:53:45 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
+int		ft_printf_double(const char *format,va_list arg, t_flags *flags)
 {
 	double nbr;
 	int tmp;
@@ -27,7 +27,22 @@ int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 	return (SUCCESS);
 }
 
-int				ft_printf_unsigned_int(const char *format, va_list arg, t_flags *flags)
+int		ft_printf_long_double(const char *format,va_list arg, t_flags *flags)
+{
+	long double nbr;
+	int tmp;
+
+	nbr = va_arg(arg, long double);
+	tmp = nbr;
+	ft_putnbr(tmp);
+	nbr = (nbr - tmp) * 1000000 + 0.5;
+	ft_putchar('.');
+	tmp = nbr;
+	ft_putnbr(tmp);
+	return (SUCCESS);
+}
+
+int		ft_printf_unsigned_int(const char *format, va_list arg, t_flags *flags)
 {
 	unsigned int i;
 	char *str = NULL;
@@ -38,7 +53,7 @@ int				ft_printf_unsigned_int(const char *format, va_list arg, t_flags *flags)
 	return (SUCCESS);
 }
 
-int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
+int		ft_printf_int(const char *format, va_list arg, t_flags *flags)
 {
 	int i;
 	int width;
@@ -61,4 +76,3 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	ft_putnbr(i);
 	return (SUCCESS);
 }
-

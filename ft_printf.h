@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:53 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 16:49:49 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/03/07 18:50:59 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ typedef struct			s_flags
 	size_t				len_min;
 	int					precision;
 	char				*format;
+	int					l;
+	int					ll;
+	int					h;
+	int					hh;
 }						t_flags;
-
-
 
 int		ft_printf(const char *format, ...);
 int		ft_printf_parse(const char *format, va_list arg);
@@ -52,6 +54,7 @@ int		ft_printf_octal(const char *format,va_list arg, t_flags *flags);
 int		ft_printf_hex(const char *format,va_list arg, char c, t_flags *flags);
 int		ft_printf_unsigned_int(const char *format,va_list arg, t_flags *flags);
 int		ft_printf_double(const char *format,va_list arg, t_flags *flags);
+int		ft_printf_long_double(const char *format,va_list arg, t_flags *flags);
 int		ft_printf_csp_case(const char *format, va_list arg, int i, t_flags *flags);
 int		ft_printf_diouxx_case(const char *format, va_list arg, int i, t_flags *flags);
 int		ft_is_diouxx(const char *format, va_list arg, int i);
@@ -61,5 +64,6 @@ int		ft_get_width(const char *format, int i);
 int		ft_isflag(const char *format, int i);
 int		ft_set_flags(const char *format,int i,t_flags *flags);
 int		ft_putstrrev(char *str);
+int		ft_set_specifier(const char *format, int i, t_flags *flags);
 
 #endif

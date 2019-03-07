@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 19:02:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 19:05:41 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 18:52:04 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int		ft_is_diouxx(const char *format, va_list arg, int i)
 
 int		ft_init_flags_struct(t_flags *flags)
 {
-	flags->flag = '0';
+	ft_bzero((void *)flags, sizeof(t_flags));
+/*	flags->flag = '0';
 	flags->sharp = 0;
 	flags->zero = 0;
 	flags->minus = 0;
@@ -57,7 +58,7 @@ int		ft_init_flags_struct(t_flags *flags)
 	flags->len = 0;
 	flags->len_min = 0;
 	flags->precision = 0;
-	flags->format = NULL;
+	flags->format = NULL;*/
 	return (SUCCESS);
 }
 

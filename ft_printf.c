@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 17:17:45 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 18:34:58 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,12 @@ int		ft_printf_parse(const char *format, va_list arg)
 			if (ft_is_diouxx(format, arg, i))
 				ft_printf_diouxx_case(format, arg, i, flags);
 			else if (format[i] == 'f')
-				ft_printf_double(format, arg, flags);
+			{
+				if (format[i - 1] == 'l' || format[i - 1] == 'L')
+					ft_printf_long_double(format, arg, flags);
+				else
+					ft_printf_double(format, arg, flags);
+			}
 			else if (format[i] == '%')
 				ft_putchar('%');
 			count_char++;
