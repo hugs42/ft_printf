@@ -6,11 +6,11 @@
 #    By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 12:18:47 by hugsbord          #+#    #+#              #
-#    Updated: 2019/03/07 16:51:02 by asuissa          ###   ########.fr        #
+#    Updated: 2019/03/07 17:40:55 by hugsbord         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAG = -Wall -Wextra #-Werror
+FLAG = #-Wall -Wextra #-Werror
 
 HEADER = libft/libft.h ft_printf.h
 
