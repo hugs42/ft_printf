@@ -58,8 +58,6 @@ int		ft_printf_parse(const char *format, va_list arg)
 				ft_set_flags(format, i, flags);
 				i++;
 			}
-			else
-				
 			if (ft_isdigit(format[i]))
 			{
 				flags->width = ft_get_width(format, i);
