@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:29:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 15:29:18 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 16:31:50 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,10 @@ int		ft_get_width(const char *format, int i)
 	tmp_digit[j] = '\0';
 	width = ft_atoi(tmp_digit);
 	return (width);
+}
+
+int		ft_format_specifiers(const char *format, int i, t_flags *flags)
+{
+	
+	return (0);
 }

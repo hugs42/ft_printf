@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 18:31:02 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 17:00:20 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,25 @@ int				ft_printf_unsigned_int(const char *format, va_list arg, t_flags *flags)
 
 int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 {
-		int i;
+	int i;
+	int width;
+	int len_nbr;
 
-		flags->flag = 'd';
-		i = va_arg(arg, int);
-		if ((flags->plus == 1) && (i >= 0))
-			ft_putchar('+');
-		ft_putnbr(i);
-		return (SUCCESS);
+	flags->flag = 'd';
+	i = va_arg(arg, int);
+	width = flags->width;
+	len_nbr = ft_strlen(ft_itoa(i));
+	if (width > len_nbr)
+	{
+		while (width > len_nbr + 1)
+		{
+			width--;
+			ft_putchar(' ');
+		}
+	}
+	if ((flags->plus == 1) && (i >= 0))
+		ft_putchar('+');
+	ft_putnbr(i);
+	return (SUCCESS);
 }
 
