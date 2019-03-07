@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 15:34:46 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 16:09:03 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		ft_printf_parse(const char *format, va_list arg)
 		if (format[i] == '%')
 		{
 			if ((ft_init_flags_struct(flags)) != SUCCESS)
-						return (ERROR);
+				return (ERROR);
 			i++;
 			if (ft_isflag(format, i))
 			{
