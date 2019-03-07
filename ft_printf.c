@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 16:09:03 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 16:49:05 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,25 +93,4 @@ int		ft_printf(const char *format, ...)
 	count_char = ft_printf_parse(format, ap);
 	va_end(ap);
 	return (count_char);
-}
-
-int		main(int argc, char **argv)
-{
-	int i = 19;
-	int j = 123;
-	int k = 42;
-	float fl = 42.15;
-	unsigned int ui = 1849494;
-//	char nb  = '7';
-	char nb1 = '6';
-//	char nb2 = '9';
-	char *str = "abc";
-	char *str2 = "groove";
-	argv = NULL;
-	argc = 2;
-
-	ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i,ui,j, j,fl, k);
-	printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j,i, ui, j,j, fl, k);
-	ft_putchar('\n');
-	return (0);
 }

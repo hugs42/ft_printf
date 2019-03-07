@@ -6,15 +6,13 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:53 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 18:21:47 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 16:49:49 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
-# include <stdlib.h>
 # include <stdarg.h>
 # include "./libft/libft.h"
 
