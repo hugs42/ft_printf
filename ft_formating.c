@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:29:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 19:08:10 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 15:29:18 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		ft_get_width(const char *format, int i)
 	char *tmp_digit;
 
 	width = 0;
+	j = 0;
 	k = i;
 	while (ft_isdigit(format[k]))
 		k++;

@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 18:43:32 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 15:34:46 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ int		main(int argc, char **argv)
 	argv = NULL;
 	argc = 2;
 
-	ft_printf("ft_printf  ::%c::%s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::", nb1, str, str2, i, j, i,ui,j, j,fl, k);
-	printf("printf     ::%c::%s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::", nb1, str, str2, i, j,i, ui, j,j, fl, k);
+	ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i,ui,j, j,fl, k);
+	printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j,i, ui, j,j, fl, k);
 	ft_putchar('\n');
 	return (0);
 }

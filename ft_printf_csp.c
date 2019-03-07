@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 16:48:28 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 18:49:15 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/07 15:45:02 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,24 @@ int		ft_printf_char(const char *format, va_list arg, t_flags *flags)
 int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 {
 	char *str;
+	int len;
+	int width;
 
 	flags->flag = 's';
 	str = va_arg(arg, char *);
+	len = ft_strlen(str);
+	width = flags->width;
 	if (str == NULL || ft_strcmp(str, "") == 0)
 		return (ERROR);
+	if (width > len)
+	{
+//		printf(" w %d len %d ", width, len);
+		while (width > len)
+		{
+			ft_putchar(' ');
+			width--;
+		}
+	}
 	ft_putstr(str);
 	return (SUCCESS);
 }
