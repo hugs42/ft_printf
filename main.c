@@ -28,11 +28,11 @@ int             main(int argc, char **argv)
         argv = NULL;
         argc = 2;
 
-//      ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i,u$
-//      printf("printf  \t::%c::%5s::%p::%+d::%0000i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j,i, u$
-//      ft_putchar('\n');
-        ft_printf("ft_printf = ::%+05d::%+05d::", i, k);
-        ft_putchar('\n');
-        printf("printf    = ::%++++05d::%+05d::", i, k);
+//      ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
+//      printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
+		ft_putchar('\n');
+	 ft_printf("ft_printf = ::%+ 06i::%+5d::", i, k);
+	ft_putchar('\n');
+	printf("printf    = ::%# 06i::%+5d::", i, k);
         return (0);
 }

@@ -28,7 +28,7 @@ int		ft_isflag(const char *format, int i)
 {
 	if ((format[i] == '#') || (format[i] == '-') || (format[i] ==
 						'+') || (format[i] == ' ') || (format[i] == '.') ||
-							(format[i] == 'h'))
+							(format[i] == 'h') || (format[i]) == '0')
 		return (SUCCESS);
 	else
 		return (FINISH);

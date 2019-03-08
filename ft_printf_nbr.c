@@ -57,23 +57,41 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	if (flags->zero)
 		c = '0';
 	if ((flags->plus == 1) && (i >= 0))
-	{
-		ft_putchar('+');
 		len_nbr++;
-	}
+	if (flags->minus == 1 && flags->plus == 1)
+		ft_putchar('+');
+	if (flags->minus == 1 && flags->zero == 1)
+		c = ' ';
+	if (flags->space == 1 && flags->plus == 1)
+		flags->space = 0;
 	if (width > len_nbr && minus == 0)
 	{
+		if ((flags->plus == 1) && (i >= 0) && (flags->zero == 1))
+		{
+			ft_putchar('+');
+//			len_nbr++;
+		}
 		while (width > len_nbr)
 		{
 			width--;
 			ft_putchar(c);
 		}
+		if ((flags->plus == 1) && (i >= 0) && (flags->zero == 0))
+		{
+			ft_putchar('+');
+			len_nbr++;
+		}
+	}
+	if (flags->space == 1)
+	{
+		ft_putchar(' ');
+		len_nbr++;
 	}
 	ft_putnbr(i);
 	width = flags->width;
 	if ((width > len_nbr) && (minus == 1))
 	{
-		while (width > len_nbr + 1)
+		while (width > len_nbr)
 		{
 			--width;
 			ft_putchar(c);

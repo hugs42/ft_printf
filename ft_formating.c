@@ -16,25 +16,23 @@ int		ft_set_flags(const char *format, int i, t_flags *flags)
 {
 	if (format[i] == '#')
 		flags->sharp = 1;
-	else
-		flags->sharp = 0;
-	if (format[i] == '-')
+	else if (format[i] == '-')
 		flags->minus = 1;
 //	else
 //		flags->minus = 0;
-	if (format[i] == '+')
+	else if (format[i] == '+')
 		flags->plus = 1;
 //	else
 //		flags->plus = 0;
-	if (format[i] == ' ')
+	else if (format[i] == ' ')
 		flags->space = 1;
 //	else
 //		flags->space = 0;
-	if (format[i] == '0')
+	else if (format[i] == '0')
 		flags->zero = 1;
 //	else
 //		flags->zero = 0;
-	if (format[i] == '.')
+	else if (format[i] == '.')
 		flags->precision = 1;
 //	else
 //		flags->precision = 0;
