@@ -44,17 +44,24 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	int width;
 	int len_nbr;
 	int zero;
+	int minus;
 	char c;
 
 	flags->flag = 'd';
 	i = va_arg(arg, int);
 	width = flags->width;
 	zero = flags->zero;
+	minus = flags->minus;
 	c = ' ';
 	len_nbr = ft_strlen(ft_itoa(i));
-	if (flags -> zero)
+	if (flags->zero)
 		c = '0';
-	if (width > len_nbr)
+	if ((flags->plus == 1) && (i >= 0))
+	{
+		ft_putchar('+');
+		len_nbr++;
+	}
+	if (width > len_nbr && minus == 0)
 	{
 		while (width > len_nbr)
 		{
@@ -62,9 +69,16 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 			ft_putchar(c);
 		}
 	}
-	if ((flags->plus == 1) && (i >= 0))
-		ft_putchar('+');
 	ft_putnbr(i);
+	width = flags->width;
+	if ((width > len_nbr) && (minus == 1))
+	{
+		while (width > len_nbr + 1)
+		{
+			--width;
+			ft_putchar(c);
+		}
+	}
 	return (SUCCESS);
 }
 

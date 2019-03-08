@@ -62,6 +62,10 @@ int		ft_printf_parse(const char *format, va_list arg)
 			{
 				flags->zero = 1;
 			}
+			if (format[i] == '-')
+			{
+				flags->minus = 1;
+			}
 			if (ft_isdigit(format[i]))
 			{
 				flags->width = ft_get_width(format, i);
