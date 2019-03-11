@@ -12,18 +12,26 @@
 
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int		ft_printf_char(const char *format, va_list arg, t_flags *flags)
 {
 	char c;
+	char w;
 
+	w = ' ';
+	if (flags->zero == 1)
+		w = '0';
 	flags->flag = 'c';
 	c = va_arg(arg, int);
 	if (!c)
 		return (ERROR);
+	if ((flags->width > 1) && (flags->minus == 0))
+		ft_putwidth(w, 1, flags);
 	if (flags-> minus == 1 && flags->width != 0)
 		ft_putchar(c);
-	ft_putchar(c);
+	if ((flags->width > 1) && (flags->minus == 1))
+		ft_putwidth(w, 1, flags);
 	return (SUCCESS);
 }
 
@@ -32,6 +40,8 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	char *str;
 	int len;
 	int width;
+	int i;
+	char c;
 
 	flags->flag = 's';
 	str = va_arg(arg, char *);
@@ -39,30 +49,39 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	width = flags->width;
 	if (str == NULL || ft_strcmp(str, "") == 0)
 		return (ERROR);
-	if (width > len)
-	{
-//		printf(" w %d len %d ", width, len);
-		while (width > len)
-		{
-			ft_putchar(' ');
-			width--;
-		}
-	}
-	ft_putstr(str);
+	if (flags->zero == 1)
+		c = '0';
+	else
+		c = ' ';
+	if ((width > len) && (flags->minus == 0))
+		ft_putwidth(c, len, flags);
+	if (flags->precision == 1)
+		return (1);
+	if ((flags->precision > 1) && (flags->precision < len))
+		ft_putnstr(str, flags->precision - 1);
+	else
+		ft_putstr(str);
+	width = flags->width;
+	if ((width > len) && (flags->minus == 1))
+		ft_putwidth(c, len, flags);
 	return (SUCCESS);
 }
 
 int				ft_printf_addr(const char *format, va_list arg, t_flags *flags)
 {
 	int i;
+	int len;
 	unsigned long addr;
 	char const *base;
 	char res[9];
 
 	i = 8;
 	base = "0123456789abcdef";
+	len = flags->width;
 	flags->flag = 'p';
 	addr = (unsigned long) va_arg(arg, unsigned long);
+	if ((flags->width > 11) && (flags->minus == 0))
+		ft_putwidth(' ', 11, flags);
 	while ((addr / 16) > 0 || i >= 8)
 	{
 		res[i] = base[addr % 16];
@@ -77,5 +96,7 @@ int				ft_printf_addr(const char *format, va_list arg, t_flags *flags)
 			ft_putchar(res[i]);
 			i++;
 	}
+	if ((flags->width > 11) && (flags->minus == 1))
+		ft_putwidth(' ', 11, flags);
 	return (SUCCESS);
 }

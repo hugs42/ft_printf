@@ -14,13 +14,15 @@
 #include <stdio.h>
 int             main(int argc, char **argv)
 {
-        int i = 10;
+        int i = 11;
         int j = 123;
         int k = 42;
 		int l =  2035065302;
+		float  m = 123.456;
         float fl = 42.15;
         unsigned int ui = 1849494;
 //      char nb  = '7';
+		char c = 'X';
         char nb1 = '6';
 //      char nb2 = '9';
         char *str = "abc";
@@ -30,9 +32,9 @@ int             main(int argc, char **argv)
 
 //      ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //      printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
-		ft_putchar('\n');
-	 ft_printf("ft_printf = ::%+ 06i::%+5d::", i, k);
+//		ft_putchar('\n');
+	 ft_printf("ft_printf = ::%-24p::%-- 6.2i::%+5d::%18f::%-8c::",str2, i, k,m,c);
 	ft_putchar('\n');
-	printf("printf    = ::%# 06i::%+5d::", i, k);
+	printf("printf    = ::%-24p::%-- 6.2i::%+5d::%18f::%-8c::",str2, i, k, m,c );
         return (0);
 }

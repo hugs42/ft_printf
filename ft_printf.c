@@ -64,12 +64,29 @@ int		ft_printf_parse(const char *format, va_list arg)
 				while (ft_isdigit(format[i]))
 					i++;
 			}
+			if (format[i] == '.')
+			{
+				i++;
+				if (ft_isdigit(format[i]))
+				{
+					flags->precision = ft_get_precision(format, i);
+					while (ft_isdigit(format[i]))
+						i++;
+				}
+				else
+					flags->precision = 1;
+			}
 			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
 				ft_printf_csp_case(format, arg, i, flags);
 			if (ft_is_diouxx(format, arg, i))
 				ft_printf_diouxx_case(format, arg, i, flags);
 			else if (format[i] == 'f')
-				ft_printf_double(format, arg, flags);
+			{
+				if (format[i - 1] == 'l' || format[i - 1] == 'L')
+					ft_printf_long_double(format, arg, flags);
+				else
+					ft_printf_double(format, arg, flags);
+			}
 			else if (format[i] == '%')
 				ft_putchar('%');
 			count_char++;
