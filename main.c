@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:03:21 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 18:38:02 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:35:43 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int             main(int argc, char **argv)
 //      ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //      printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //		ft_putchar('\n');
-	 ft_printf("ft_printf = ::%-24p::%6.2i::%+5d::%17.f::%-8c::",str2, i, k,m,c);
+	 ft_printf("ft_printf = ::%-24p::%6.2i::%+21d::%17.f::%-8c::",str2, i, k,m,c);
 	ft_putchar('\n');
-	printf("printf    = ::%-24p::%6.2i::%+5d::%17.f::%-8c::",str2, i, k, m,c );
+	printf("printf    = ::%-24p::%6.2i::%+21d::%17.f::%-8c::",str2, i, k, m,c );
 		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 18:38:10 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:34:58 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 	nbr_tmp_final = ft_strjoin(nbr_tmp1, dot);
 	nbr_tmp2 = ft_itoa(tmp);
 	nbr_tmp_final2 = ft_strjoin(nbr_tmp_final, nbr_tmp2);
-	if (flags->zero == 1)
+	if (flags->zero > 0)
 		c = '0';
 	if (flags->precision == 0)
 		if ((flags->width > ft_strlen(nbr_tmp_final2)) && (flags-> minus == 0))
@@ -117,21 +117,37 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	minus = flags->minus;
 	c = ' ';
 	len_nbr = ft_strlen(ft_itoa(i));
-	if (flags->zero)
+	if (flags->zero > 0)
 		c = '0';
 	if ((flags->plus == 1) && (i >= 0))
+	{
 		len_nbr++;
+		flags->space = 0;
+	}
 //	if (flags->minus == 1 && flags->plus == 1)
 //		ft_putchar('+');
 	if (flags->minus == 1 && flags->zero == 1)
 		c = ' ';
-	if (flags->space == 1 && flags->plus == 1)
-		flags->space = 9;
+	if ((flags->space == 1) && (flags->width == 0))
+		ft_putchar(' ');
+//	else if ((flags->space == 1) && (flags->width > 0))
+//		ft_putchar(' ');
+	if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 0))
+		ft_putchar(' ');
+	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 1))
+		ft_putchar('+');
+	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->zero == 0))
+		ft_putchar('+');
+	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 1))
+		ft_putchar('0');
+	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 1)) //&& (flags->zero > 0))
+		ft_putchar(' ');
 	if ((width > len_nbr) && ( minus == 0))
 		ft_putwidth(c, len_nbr, flags);
-//		if ((flags->plus == 1) && (i >= 0) && (flags->zero == 1))
-/*			ft_putchar('+');
-		if ((flags->space == 1) && (flags->zero == 1))
+	if ((flags->plus == 1) && (i >= 0) && (flags->width == 0))
+		ft_putchar('+');
+
+/*		if ((flags->space == 1) && (flags->zero == 1))
 		{
 			ft_putchar(' ');
 			len_nbr++;

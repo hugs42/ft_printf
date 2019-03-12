@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 19:02:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/06 19:05:41 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:21:26 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 			ft_putchar(c);
 			width--;
 		}
-		if (flags->plus == 1)
+		if (flags->plus == 1  && flags->zero == 0)
 			ft_putchar('+');
 		else
 			ft_putchar(c);
@@ -120,7 +120,7 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 			width--;
 			ft_putchar(' ');
 		}
-		if (flags->plus == 1)
+		if (flags->plus == 1 && flags->zero == 0)
 			ft_putchar('+');
 		else
 			ft_putchar(' ');
