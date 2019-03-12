@@ -11,16 +11,44 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+/*
+void sd2str_v2(char *lpszDest, double value) {
+	char *pDst;
+	int i, j;
+	pDst = lpszDest;
+	i = value;
+	value -= i;
+	itoa(i, pDst, 10);
+	if (i < 0.0) { pDst++; value = -value; }
+	pDst += length(i);
+	*pDst++ = ',';
+	for (j = 0; j < 17; ++j) {
+		value *= 10;
+		i = value;
+		value -= i;
+		*pDst++ = '0' + i;
+	}
+	*pDst = 0;
+}
+*/
 
-static size_t   ft_str_len(int n)
+size_t   ft_str_len(double n)
 {
-		size_t		i;
+	int l = 0;
+	int temp = 1;
+	while (temp <= n)
+	{
+	 temp *= 10;
+	 l++;
+	}
+	return (l);
+/*		size_t		i;
 
 		i = 1;
 		while (n /= 10)
 				i++;
 		return (i);
-}
+*/}
 
 char					*ft_itoa_double(int n)
 {
@@ -29,12 +57,12 @@ char					*str;
 		unsigned int    n_tmp;
 
 		len = ft_str_len(n);
-		n_tmp = n;
-		if (n < 0)
-		{
-				n_tmp = -n;
-				len++;
-		}
+	n_tmp = n;
+	if (n < 0)
+	{
+			n_tmp = -n;
+			len++;
+	}
 	if (!(str = ft_strnew(len)))
 				return (NULL);
 		str[--len] = n_tmp % 10 + '0';
@@ -65,7 +93,7 @@ int				ft_putnstr(char *str, int n)
 		ft_putchar(str[i]);
 		i++;
 	}
-	return (SUCCESS);
+	return (i);
 }
 
 int		ft_putwidth(char c, int len, t_flags *flags)
@@ -75,19 +103,27 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 	width = flags->width;
 	if ((width > len) && (flags->minus == 0))
 	{
-		while (width > len)
+		while (width > len + 1)
 		{
 			ft_putchar(c);
 			width--;
 		}
+		if (flags->plus == 1)
+			ft_putchar('+');
+		else
+			ft_putchar(c);
 	}
 	else if ((width > len) && (flags->minus == 1))
 	{
-		while (width > len)
+		while (width > len + 1)
 		{
 			width--;
 			ft_putchar(' ');
 		}
+		if (flags->plus == 1)
+			ft_putchar('+');
+		else
+			ft_putchar(' ');
 	}
 	else
 		ft_putstr("PORN");
