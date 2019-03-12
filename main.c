@@ -15,7 +15,7 @@
 int             main(int argc, char **argv)
 {
         int i = 11;
-        int j = 123;
+        int j = 1234567;
         int k = 42;
 		int l =  2035065302;
 		float  m = 13223.3622;
@@ -33,8 +33,8 @@ int             main(int argc, char **argv)
 //      ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //      printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //		ft_putchar('\n');
-	 ft_printf("ft_printf = ::%-24p::%6.2i::%+21.33d::%17.f::%-8c::",str2, i, k,m,c);
+	 ft_printf("ft_printf = ::%4p::%-+013i::%+2d::%7f::%c::",str2, j, k,m,c);
 	ft_putchar('\n');
-	printf("printf    = ::%-24p::%6.2i::%+21.33d::%17.f::%-8c::",str2, i, k, m,c );
+	printf("printf    = ::%4p::%-+013i::%+2d::%7f::%c::",str2, j, k, m,c );
 		return (0);
 }

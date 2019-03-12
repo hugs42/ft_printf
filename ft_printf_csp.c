@@ -26,7 +26,7 @@ int		ft_printf_char(const char *format, va_list arg, t_flags *flags)
 	c = va_arg(arg, int);
 	if (!c)
 		return (ERROR);
-	if ((flags->width > 1) && (flags->minus == 0))
+	if ((flags->width > 1) && (flags->minus == 0) && (flags->precision != 1))
 		ft_putwidth(w, 1, flags);
 	if (flags-> minus == 1 && flags->width != 0)
 		ft_putchar(c);
@@ -80,7 +80,7 @@ int				ft_printf_addr(const char *format, va_list arg, t_flags *flags)
 	len = flags->width;
 	flags->flag = 'p';
 	addr = (unsigned long) va_arg(arg, unsigned long);
-	if ((flags->width > 11) && (flags->minus == 0))
+	if ((flags->width > 11) && (flags->minus == 0) && flags->zero == 0)
 		ft_putwidth(' ', 11, flags);
 	while ((addr / 16) > 0 || i >= 8)
 	{
@@ -91,6 +91,10 @@ int				ft_printf_addr(const char *format, va_list arg, t_flags *flags)
 	res[i] = base[(addr % 16)];
 	ft_putchar('0');
 	ft_putchar('x');
+/*	if (flags->zero == 1 && flags->width > 11 && flags->minus == 0)
+	{
+		ft_putwidth('0', flags->width - 9, flags);
+	}*/
 	while (i < 9)
 	{
 			ft_putchar(res[i]);

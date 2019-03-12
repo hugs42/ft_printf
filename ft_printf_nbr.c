@@ -132,11 +132,15 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		ft_putchar(' ');
 //	else if ((flags->space == 1) && (flags->width > 0))
 //		ft_putchar(' ');
-	if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 0))
+	if ((flags->plus == 1) && (i >= 0) && (flags->width > len_nbr + 1) && (flags->minus == 0) && (flags->zero == 0))
 		ft_putchar(' ');
+	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 0))
+		ft_putchar('+');
 	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 1))
 		ft_putchar('+');
 	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->zero == 0))
+		ft_putchar('+');
+		else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->zero == 1))
 		ft_putchar('+');
 //	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 1))
 //		ft_putchar('0');
