@@ -28,7 +28,9 @@ int		ft_printf_char(const char *format, va_list arg, t_flags *flags)
 		return (ERROR);
 	if ((flags->width > 1) && (flags->minus == 0) && (flags->precision != 1))
 		ft_putwidth(w, 1, flags);
-	if (flags-> minus == 1 && flags->width != 0)
+	if (flags->minus == 1 && flags->width != 0)
+		ft_putchar(c);
+	else
 		ft_putchar(c);
 	if ((flags->width > 1) && (flags->minus == 1))
 		ft_putwidth(w, 1, flags);
