@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/12 18:34:58 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:50:07 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,11 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		ft_putchar('+');
 	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->zero == 0))
 		ft_putchar('+');
-	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 1))
-		ft_putchar('0');
-	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 1)) //&& (flags->zero > 0))
+//	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 1))
+//		ft_putchar('0');
+	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->space == 1)) //&& (flags->zero > 0))
+		ft_putchar(' ');
+	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->space == 1)) //&& (flags->zero > 0))
 		ft_putchar(' ');
 	if ((width > len_nbr) && ( minus == 0))
 		ft_putwidth(c, len_nbr, flags);
