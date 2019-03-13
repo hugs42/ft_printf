@@ -110,11 +110,14 @@ int		ft_putzero_adress(char c, int len)
 int		ft_putwidth(char c, int len, t_flags *flags)
 {
 	int width;
+	int tmp = len;
 
 	width = flags->width;
-	if (flags->flag == 's' && flags->precision > 0)
+	if (flags->flag == 's' && flags->precision > 0)// && width <len)
 		len = flags->precision;
-	if ((width > len) && (flags->minus == 0))
+		if (flags->flag == 's' && flags->precision > 0 && width <len)
+		len = tmp;
+	if ((width >= len) && (flags->minus == 0))
 	{
 		while (width > len + 1)
 		{
@@ -128,7 +131,7 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 		else
 			ft_putchar(c);
 	}
-	else if ((width > len) && (flags->minus == 1))
+	else if ((width >= len) && (flags->minus == 1))
 	{
 		while (width > len + 1)
 		{
