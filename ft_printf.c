@@ -66,15 +66,20 @@ int		ft_printf_parse(const char *format, va_list arg)
 			}
 			if (format[i] == '.')
 			{
+				flags->precision = 0;
+				flags->is_precision = 1;
 				i++;
+//				if (!(ft_isdigit(format[i])))
+//					flags->precision = 0;
 				if (ft_isdigit(format[i]))
 				{
+//					ft_putchar(':');
 					flags->precision = ft_get_precision(format, i);
 					while (ft_isdigit(format[i]))
 						i++;
 				}
 				else
-					flags->precision = 1;
+					flags->precision = 0;
 			}
 			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
 				ft_printf_csp_case(format, arg, i, flags);

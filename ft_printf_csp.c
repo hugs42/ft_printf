@@ -43,7 +43,10 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	int len;
 	int width;
 	int i;
+	int pp;
 	char c;
+	int l;
+	l = 0;
 	flags->flag = 's';
 	str = va_arg(arg, char *);
 	len = ft_strlen(str);
@@ -62,8 +65,14 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		return (SUCCESS);
 	else if (flags->precision >= 1 && flags->width > len && flags->minus == 0)
 		ft_putwidth(c, len, flags);
+//printf("%d -", flags->precision);
+//	if (flags->is_precision == 1 && flags->precision == 0)
+//		ft_putchar(c);
 	if ((flags->precision >= 1) && (flags->precision < len))
 		ft_putnstr(str, flags->precision - 1);
+	else if (flags->is_precision == 1 && flags->precision == 0)
+		while (++l <= ft_strlen(str))
+			ft_putchar(c);
 	else
 		ft_putstr(str);
 	width = flags->width;

@@ -36,6 +36,7 @@ typedef struct			s_flags
 	int					width;
 	size_t				len;
 	size_t				len_min;
+	int					is_precision;
 	int					precision;
 	char				*format;
 	int					l;
