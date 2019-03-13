@@ -113,10 +113,12 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 	int tmp = len;
 
 	width = flags->width;
-	if (flags->flag == 's' && flags->precision > 0)// && width <len)
+	if (flags->flag == 's' && flags->precision > 0 && flags->precision < len)// && width <len)
 		len = flags->precision;
-		if (flags->flag == 's' && flags->precision > 0 && width <len)
+	if (flags->flag == 's' && flags->precision > 0 && flags->precision > len)
 		len = tmp;
+//	if (flags->flag == 's' && flags->precision > 0 && width >len)
+//		len = tmp;
 	if ((width >= len) && (flags->minus == 0))
 	{
 		while (width > len + 1)
