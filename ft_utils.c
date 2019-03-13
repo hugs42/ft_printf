@@ -96,6 +96,17 @@ int				ft_putnstr(char *str, int n)
 	return (i);
 }
 
+int		ft_putzero_adress(char c, int len)
+
+{
+	while (len > 0)
+	{
+		ft_putchar('0');
+		len--;
+	}
+	return (SUCCESS);
+}
+
 int		ft_putwidth(char c, int len, t_flags *flags)
 {
 	int width;

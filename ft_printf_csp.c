@@ -77,10 +77,12 @@ int				ft_printf_addr(const char *format, va_list arg, t_flags *flags)
 	char const *base;
 	char res[9];
 
+	int diff = 0;
 	i = 8;
 	base = "0123456789abcdef";
 	len = flags->width;
 	flags->flag = 'p';
+	diff = flags->width - 11;
 	addr = (unsigned long) va_arg(arg, unsigned long);
 	if ((flags->width > 11) && (flags->minus == 0) && flags->zero == 0)
 		ft_putwidth(' ', 11, flags);
@@ -93,10 +95,8 @@ int				ft_printf_addr(const char *format, va_list arg, t_flags *flags)
 	res[i] = base[(addr % 16)];
 	ft_putchar('0');
 	ft_putchar('x');
-/*	if (flags->zero == 1 && flags->width > 11 && flags->minus == 0)
-	{
-		ft_putwidth('0', flags->width - 9, flags);
-	}*/
+	if (flags->zero == 1 && diff > 0 && flags->minus == 0)
+		ft_putzero_adress('0', diff);
 	while (i < 9)
 	{
 			ft_putchar(res[i]);
