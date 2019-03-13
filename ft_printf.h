@@ -76,6 +76,6 @@ int		ft_set_specifier(const char *format, int i, t_flags *flags);
 char	*ft_itoa_double(int n);
 size_t	ft_str_len(double n);
 char	*ft_itoai_doule(int n);
-int		ft_putzero_adress(char c, int len);
+int		ft_putzero_adress(int len);
 
 #endif

@@ -96,7 +96,7 @@ int				ft_putnstr(char *str, int n)
 	return (i);
 }
 
-int		ft_putzero_adress(char c, int len)
+int		ft_putzero_adress(int len)
 
 {
 	while (len > 0)
@@ -115,9 +115,9 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 	width = flags->width;
 	if (flags->flag == 's' && flags->precision > 0 && flags->precision < len)// && width <len)
 		len = flags->precision;
-	if (flags->flag == 's' && flags->precision > 0 && flags->precision > len)
+	if ((flags->flag == 's'/* || flags-> flag == 'p'*/) && (flags->precision > 0) && (flags->precision > len))
 		len = tmp;
-	if (flags->flag == 's' && flags->precision > 0 && width >len)
+	if ((flags->flag == 's'/* || flags-> flag == 'p'*/) && (flags->precision > 0) && (width >len))
 		len = tmp;
 //	len = tmp;
 	if ((width >= len) && (flags->minus == 0))
@@ -146,8 +146,8 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 		else
 			ft_putchar(' ');
 	}
-	else
-		ft_putstr("PORN");
+//	else
+//		ft_putstr("Error ft_putwidth");
 	return (SUCCESS);
 }
 
