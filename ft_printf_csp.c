@@ -57,29 +57,34 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		c = '0';
 	else
 		c = ' ';
-	if ((width > len) && (flags->minus == 0) && (flags->precision == 0))
+	if ((width > len) && (flags->minus == 0) && (flags->precision == 0) && (flags->is_precision == 0))
 	{
 		ft_putwidth(c, len, flags);
 	}
 	if (flags->precision == 1 && flags->width == 0)
 		return (SUCCESS);
-	else if (flags->precision >= 1 && flags->width > len && flags->minus == 0)
+//	if (flags->precision == 1 && flags->width == 0)
+//		return (SUCCESS);
+	else if (flags->precision >= 1 && flags->precision <= len && flags->width > len && flags->minus == 0)
+		ft_putwidth(c, len - (len - flags->precision), flags);
+	else if (flags->precision >= 1 && flags->precision > len && flags->width > len && flags->minus == 0)
 		ft_putwidth(c, len, flags);
 //printf("%d -", flags->precision);
 //	if (flags->is_precision == 1 && flags->precision == 0)
 //		ft_putchar(c);
+//	printf("%d -", flags->width);
 	if ((flags->precision >= 1) && (flags->precision < len))
 		ft_putnstr(str, flags->precision - 1);
 	else if (flags->is_precision == 1 && flags->precision == 0)
-		while (++l <= ft_strlen(str))
+		while (l++ < flags->width)
 			ft_putchar(c);
 	else
 		ft_putstr(str);
 	width = flags->width;
-	if (flags->precision >= 1 && flags->width > len && flags->minus == 1)
-	{
+	if (flags->precision >= 1 &&  flags->precision <= len && flags->width > len && flags->minus == 1)
+		ft_putwidth('i', len - (len - flags->precision), flags);
+	else if (flags->precision >= 1 && flags->precision > len && flags->width > len && flags->minus == 1)
 		ft_putwidth(c, len, flags);
-	}
 	if ((width > len) && (flags->minus == 1) && (flags->precision == 0))
 		ft_putwidth(c, len, flags);
 	return (SUCCESS);

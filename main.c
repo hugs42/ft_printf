@@ -46,9 +46,8 @@ int             main(int argc, char **argv)
 	unsigned int u = 321;
 	int x = 888;
 	int x2 = 55;
-	ft_printf("ft_printf = ::%-+c::%-014.1s::%+0-013p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
+	ft_printf("ft_printf = ::%-+c::%-13s::%+0-013.4p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
 	ft_putchar('\n');
-	printf("printf    = ::%-+.c::%-014.1s::%+0-013p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
-
+	printf("printf    = ::%-+.c::%-13s::%+0-013.4p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
 		return (0);
 }
