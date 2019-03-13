@@ -44,7 +44,6 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	int width;
 	int i;
 	char c;
-
 	flags->flag = 's';
 	str = va_arg(arg, char *);
 	len = ft_strlen(str);
@@ -55,16 +54,24 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		c = '0';
 	else
 		c = ' ';
-	if ((width > len) && (flags->minus == 0))
+	if ((width > len) && (flags->minus == 0) && (flags->precision == 0))
+	{
 		ft_putwidth(c, len, flags);
-	if (flags->precision == 1)
-		return (1);
-	if ((flags->precision > 1) && (flags->precision < len))
+	}
+	if (flags->precision == 1 && flags->width == 0)
+		return (SUCCESS);
+	else if (flags->precision >= 1 && flags->width > len && flags->minus == 0)
+		ft_putwidth(c, len, flags);
+	if ((flags->precision >= 1) && (flags->precision < len))
 		ft_putnstr(str, flags->precision - 1);
 	else
 		ft_putstr(str);
 	width = flags->width;
-	if ((width > len) && (flags->minus == 1))
+	if (flags->precision >= 1 && flags->width > len && flags->minus == 1)
+	{
+		ft_putwidth(c, len, flags);
+	}
+	if ((width > len) && (flags->minus == 1) && (flags->precision == 0))
 		ft_putwidth(c, len, flags);
 	return (SUCCESS);
 }
