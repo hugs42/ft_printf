@@ -12,23 +12,24 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
-int             main(int argc, char **argv)
+
+int		main(int argc, char **argv)
 {
 //        int i = 11;
-        int j = 1234567;
-        int k = 42;
-		int l =  2035065302;
-		float  m = 13223.3622;
-        float fl = 42.15;
-        unsigned int ui = 1849494;
+	int j = 1234567;
+	int k = 42;
+	int l =  2035065302;
+	float  m = 13223.3622;
+	float fl = 42.15;
+	unsigned int ui = 1849494;
 //      char nb  = '7';
 //		char c = 'X';
-        char nb1 = '6';
+	char nb1 = '6';
 //      char nb2 = '9';
-        char *str = "abc";
-        char *str2 = "groove";
-        argv = NULL;
-        argc = 2;
+	char *str = "abc";
+	char *str2 = "groove";
+	argv = NULL;
+	argc = 2;
 
 //      ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //      printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
@@ -46,8 +47,8 @@ int             main(int argc, char **argv)
 	unsigned int u = 321;
 	int x = 888;
 	int x2 = 55;
-	ft_printf("ft_printf = ::%-+c::%9.3s::%-025.1p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
+	ft_printf("ft_printf = ::%-#1c::%-03.1s::%15.p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
 	ft_putchar('\n');
-	printf("printf    = ::%-+.c::%9.3s::%-025.1p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
+	printf("printf    = ::%-#1c::%-03.1s::%15.p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
 		return (0);
 }
