@@ -12,32 +12,32 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-int		main(int argc, char **argv)
+#include <string.h>
+int		main(void)
 {
-//        int i = 11;
-	int j = 1234567;
+//  int i = 11;
+/*	int j = 1234567;
 	int k = 42;
 	int l =  2035065302;
 	float  m = 13223.3622;
 	float fl = 42.15;
 	unsigned int ui = 1849494;
-//      char nb  = '7';
-//		char c = 'X';
+//  char nb  = '7';
+//	char c = 'X';
 	char nb1 = '6';
 //      char nb2 = '9';
 	char *str = "abc";
 	char *str2 = "groove";
 	argv = NULL;
 	argc = 2;
-
+*/
 //      ft_printf("ft_printf\t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //      printf("printf  \t::%c::%5s::%p::%+d::%i::%o::%u::%x::%X::%%::%f::%+d::\\\\", nb1, str, str2, i, j, i, ui);
 //		ft_putchar('\n');
 //	 ft_printf("ft_printf = ::%4p::%+d::%7f::%- .c::",str2, k,m,c);
 //	ft_putchar('\n');
 //	printf("printf    = ::%4p::%+d::%7f::%- .c::",str2, k, m,c );
-
+/*
 	char c = 'c';
 	char *s = "groove";
 	char *p = "p";
@@ -46,9 +46,12 @@ int		main(int argc, char **argv)
 	int o = 42;
 	unsigned int u = 321;
 	int x = 888;
-	int x2 = 55;
-	ft_printf("ft_printf = ::%-#1c::%-03.1s::%15.p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
+	int x2 = 55;*/
+//	ft_printf("ft_printf = ::%-#1c::%+11s::%15.p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
+//	ft_putchar('\n');
+//	printf("printf    = ::%-#1c::%+11s::%15.p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
+	ft_printf("%+23.14d", 4242);
 	ft_putchar('\n');
-	printf("printf    = ::%-#1c::%-03.1s::%15.p::%+03d::%+06i::::%u::%x::%X::", c, s, p, d, i, u, x, x2);
+	printf("%+23.14d", 4242);
 		return (0);
 }

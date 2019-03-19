@@ -16,7 +16,7 @@ int				ft_printf_octal(const char *format, va_list arg, t_flags *flags)
 {
 	int i;
 	int nbr;
-	char *res;
+	char *res = NULL;
 	char *base = "01234567";
 	i = 0;
 	nbr = va_arg(arg, int);
@@ -35,7 +35,7 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 {
 	int i;
 	int nbr;
-	char res[100];
+	char *res;
 	char *base_low = "0123456789abcdef";
 	char *base_upp = "0123456789ABCDEF";
 	i = 0;
@@ -48,8 +48,9 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 			nbr /= 16;
 			i++;
 		}
-		res[i] = '\0';
-		ft_putstrrev(res);
+		while (res[i] != '\0')
+			res[i++] = '\0';
+//		ft_putstrrev(res);
 	}
 	else if (c == 'X')
 	{
@@ -59,8 +60,9 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 			nbr /= 16;
 			i++;
 		}
-		res[i] = '\0';
-		ft_putstrrev(res);
+		while (res[i] != '\0')
+			res[i++] = '\0';
 	}
+	ft_putstr(ft_strrev(res));
 	return (SUCCESS);
 }

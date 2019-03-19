@@ -12,8 +12,8 @@
 
 #include "ft_printf.h"
 
-int		ft_printf_type_conversion(const char *format, va_list arg, int i)
+/*int		ft_printf_type_conversion(const char *format, va_list arg, int i)
 {
 	
 	return (SUCCESS);
-}
+*/

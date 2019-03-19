@@ -7,6 +7,6 @@ then
 	echo 'All Clean'
 else
 	make all
-	gcc $FLAGS main.c -L . -lprintf -o test_printf.exe
+	gcc $FLAGS main.c -L . -lftprintf -o test_printf.exe
 	echo 'exec ready'
 fi

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FLAG = #-Wall -Wextra #-Werror
+FLAG = -Wall -Wextra #-Werror
 
 HEADER = libft/libft.h ft_printf.h
 
@@ -20,7 +20,7 @@ INCLUDE =  $(HEADER)
 
 CPPFLAGS = -I $(INCLUDE)
 
-NAME = libprintf.a
+NAME = libftprintf.a
 
 SRC_PATH = libft/
 
@@ -96,7 +96,9 @@ SRC_PRINTF = ft_formating.c \
 			ft_printf.c \
 			ft_printf_base_conv.c \
 			ft_printf_precision.c \
-			ft_printf_csp.c \
+			ft_printf_str.c \
+			ft_printf_char.c \
+			ft_printf_p_addr.c \
 			ft_printf_type_conversion.c
 
 OBJ = $(SRC:.c=.o)

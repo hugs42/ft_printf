@@ -13,6 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdio.h>
 # include <stdarg.h>
 # include "./libft/libft.h"
 
@@ -43,6 +44,7 @@ typedef struct			s_flags
 	int					ll;
 	int					h;
 	int					hh;
+//	static int			count_char;
 }						t_flags;
 
 
@@ -77,5 +79,7 @@ char	*ft_itoa_double(int n);
 size_t	ft_str_len(double n);
 char	*ft_itoai_doule(int n);
 int		ft_putzero_adress(int len);
+char	*ft_strrev(char *str);
+int		ft_putwidth_by_prec(char c, int len, t_flags *flags);
 
 #endif

@@ -14,27 +14,34 @@
 
 int		ft_printf_csp_case(const char *format, va_list arg, int i ,t_flags *flags)
 {
+	int count_char;
+
+	count_char = 0;
 	if (format[i] == 'c')
-		ft_printf_char(format, arg, flags);
+		count_char += ft_printf_char(format, arg, flags);
 	else if (format[i] == 's')
-		ft_printf_str(format, arg, flags);
+		count_char += ft_printf_str(format, arg, flags);
 	else if (format[i] == 'p')
-		ft_printf_addr(format, arg, flags);
-	return (SUCCESS);
+		count_char += ft_printf_addr(format, arg, flags);
+	return (count_char);
 }
 
 int		ft_printf_diouxx_case(const char *format, va_list arg, int i, t_flags *flags)
 {
+	int count_char;
+
+	count_char = 0;
 	if ((format[i] == 'd') || (format[i] == 'i'))
-		ft_printf_int(format, arg, flags);
+		count_char += ft_printf_int(format, arg, flags);
 	else if (format[i] == 'o')
-		ft_printf_octal(format, arg, flags);
+		count_char += ft_printf_octal(format, arg, flags);
 	else if (format[i] == 'u')
-		ft_printf_unsigned_int(format, arg, flags);
+		count_char += ft_printf_unsigned_int(format, arg, flags);
 	else if ((format[i] == 'x') || (format[i] == 'X'))
-		ft_printf_hex(format, arg, format[i], flags);
-	return (SUCCESS);
+		count_char += ft_printf_hex(format, arg, format[i], flags);
+	return (count_char);
 }
+#include <stdio.h>
 
 int		ft_printf_parse(const char *format, va_list arg)
 {
@@ -42,8 +49,10 @@ int		ft_printf_parse(const char *format, va_list arg)
 	int			count_char;
 	char		*str;
 	t_flags		*flags;
+	int			len_w;
 
 	i = 0;
+	len_w = 0;
 	count_char = 0;
 	flags = malloc(sizeof(t_flags));
 	while (format[i] != '\0')
@@ -64,6 +73,14 @@ int		ft_printf_parse(const char *format, va_list arg)
 				while (ft_isdigit(format[i]))
 					i++;
 			}
+/*			if (format[i] == '%')
+			{
+				if (flags->minus == 0)
+					count_char += ft_putwidth(' ', flags->width, flags);
+//				ft_putchar('%');
+				if (flags->minus == 1)
+					count_char += ft_putwidth(' ', flags->width, flags);
+			}*/
 			if (format[i] == '.')
 			{
 				flags->precision = 0;
@@ -82,9 +99,9 @@ int		ft_printf_parse(const char *format, va_list arg)
 					flags->precision = 0;
 			}
 			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
-				ft_printf_csp_case(format, arg, i, flags);
+				count_char += ft_printf_csp_case(format, arg, i, flags);
 			if (ft_is_diouxx(format, arg, i))
-				ft_printf_diouxx_case(format, arg, i, flags);
+				count_char += ft_printf_diouxx_case(format, arg, i, flags);
 			else if (format[i] == 'f')
 			{
 				if (format[i - 1] == 'l' || format[i - 1] == 'L')
@@ -93,8 +110,25 @@ int		ft_printf_parse(const char *format, va_list arg)
 					ft_printf_double(format, arg, flags);
 			}
 			else if (format[i] == '%')
+			{
+				len_w = flags->width;
+				if (flags->minus == 0 && flags->width > 0)
+					while (--len_w > 0)
+					{
+						ft_putchar(' ');
+						count_char++;
+					}
+					len_w = flags->width;
 				ft_putchar('%');
-			count_char++;
+				count_char++;
+				if (flags->minus == 1 && flags->width > 0)
+					while (--len_w > 0)
+					{
+						ft_putchar(' ');
+						count_char++;
+					}
+			}
+//			count_char++;
 			i++;
 		}
 		else
@@ -103,6 +137,7 @@ int		ft_printf_parse(const char *format, va_list arg)
 			count_char++;
 			i++;
 		}
+//		count_char = i;
 	}
 	return (count_char);
 }
@@ -113,7 +148,7 @@ int		ft_printf(const char *format, ...)
 	va_list ap;
 	va_start(ap, format);
 	count_char = ft_printf_parse(format, ap);
+//	printf("\n%d\n", count_char);
 	va_end(ap);
 	return (count_char);
 }
-

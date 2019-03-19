@@ -11,26 +11,33 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-void sd2str_v2(char *lpszDest, double value) {
-	char *pDst;
-	int i, j;
-	pDst = lpszDest;
-	i = value;
-	value -= i;
-	itoa(i, pDst, 10);
-	if (i < 0.0) { pDst++; value = -value; }
-	pDst += length(i);
-	*pDst++ = ',';
-	for (j = 0; j < 17; ++j) {
-		value *= 10;
-		i = value;
-		value -= i;
-		*pDst++ = '0' + i;
+
+char	*ft_strrev(char *s)
+{
+	char	*rev;
+	char	*rev1;
+	int		i;
+	int		x;
+
+	i = 0;
+	x = 0;
+	if (!(rev1 = ft_memalloc(ft_strlen(s))))
+		return (NULL);
+	if (!(rev = ft_memalloc(ft_strlen(s))))
+		return (NULL);
+	rev1 = ft_strcpy(rev1, s);
+	while (rev1[i])
+	{
+		rev[i] = rev1[i];
+		i++;
 	}
-	*pDst = 0;
+	i--;
+	while (i >= 0)
+		rev1[x++] = rev[i--];
+	rev1[x] = '\0';
+	free(rev);
+	return (rev1);
 }
-*/
 
 size_t   ft_str_len(double n)
 {
@@ -42,13 +49,7 @@ size_t   ft_str_len(double n)
 	 l++;
 	}
 	return (l);
-/*		size_t		i;
-
-		i = 1;
-		while (n /= 10)
-				i++;
-		return (i);
-*/}
+}
 
 char					*ft_itoa_double(int n)
 {
@@ -77,7 +78,7 @@ int				ft_putstrrev(char *str)
 {
 	int len;
 	len = ft_strlen(str);
-	while (len + 1 > 0)
+	while (len > 1)
 	{
 		ft_putchar(str[len]);
 		len--;
@@ -111,7 +112,9 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 {
 	int width;
 	int tmp = len;
+	int count_char;
 
+	count_char = 0;
 	width = flags->width;
 	if (flags->flag == 's' && flags->precision > 0 && flags->precision < len)// && width <len)
 		len = flags->precision;
@@ -125,14 +128,16 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 		while (width > len + 1)
 		{
 			ft_putchar(c);
+			count_char++;
 			width--;
 		}
-		if (flags->plus == 1  && flags->zero == 0 && flags->flag != 'c' && flags->flag != 'p' && flags->flag !='s')
+		if (flags->plus == 1  && flags->zero == 0 && flags->flag != 'c' && flags->flag != 'p' && flags->flag !='s' && flags->flag != 'd')
 			ft_putchar('+');
 		else if ((flags->plus == 0) && (flags->space == 1))
 			return (SUCCESS);
 		else
 			ft_putchar(c);
+		count_char++;
 	}
 	else if ((width >= len) && (flags->minus == 1))
 	{
@@ -140,15 +145,18 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 		{
 			width--;
 			ft_putchar(' ');
+			count_char++;
 		}
 		if (flags->plus == 1 && flags->zero == 0 && flags->flag != 'c' && flags->flag != 's' && flags->flag != 'p')
 			ft_putchar('+');
 		else
 			ft_putchar(' ');
+		count_char++;
 	}
 //	else
 //		ft_putstr("Error ft_putwidth");
-	return (SUCCESS);
+//	printf("%d --", count_char);
+	return (count_char);
 }
 
 char	*cut_left(char *str,  int n)
