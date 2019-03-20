@@ -31,6 +31,40 @@ int				ft_printf_octal(const char *format, va_list arg, t_flags *flags)
 	return (SUCCESS);
 }
 
+static int		conv_ex(int nb)
+{
+	if (nb >= 10)
+		return (nb - 10 + 'a');
+	else
+		return (nb + '0');
+}
+
+char	*itoa_base(int value, int base)
+{
+	int					i;
+	char				*str;
+	int				tmp;
+	
+	i = 0;
+	tmp = value;
+	while (tmp >= base)
+	{
+		tmp = tmp / base;
+		i++;
+	}	
+	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	str[i + 1] = '\0';
+	while (i >= 0)
+	{
+		tmp = value % base;
+		str[i] = conv_ex(tmp);
+		value /= base;
+		i--;
+	}
+	return (str);
+}
+
 int    *ft_intcpy(int *dest, const int *src, size_t n)
 {
         unsigned int i;
@@ -130,7 +164,7 @@ long			ft_atoi_long(const char *str)
 		return (result);
 }
 
-int		ft_binary_addition(long binary1, long binary2)
+int		ft_binary_addition(long binary1, long binary2, t_flags *flags)
 {
 //    long binary1, binary2;
 	int i = 0;
@@ -153,15 +187,15 @@ int		ft_binary_addition(long binary1, long binary2)
 		sum[i++] = remainder;
 	--i;
 	int ww = i;
-	while (ww >= 0)
-		printf("%d", sum[ww--]);
-	ft_putchar('\n');
+//	while (ww >= 0)
+//		printf("%d", sum[ww--]);
+//	ft_putchar('\n');
 //	ft_putchar('\n');
 //.	printf("%d", sum);
 	int k = 0;
 	int l = 0;
 	int m = 0;
-	printf("\n-i = %d\n", i);
+//	printf("\n-i = %d\n", i);
 	while (i >= 0)
 	{
 //		if (i % 4 == 0)
@@ -188,7 +222,7 @@ int		ft_binary_addition(long binary1, long binary2)
 	}
 //	for( int i = 0; i < 5; ++i )
 //		printf( "%d", bin4[ i ] );
-	i = 0;
+/*	i = 0;
 	while (i <= 4)
 		ft_putnbr(bin4[ i++]);
 //	ft_putchar(' ');
@@ -202,7 +236,7 @@ int		ft_binary_addition(long binary1, long binary2)
 	i = 0;
 	while (i < 1)
 		ft_putnbr(bin1[ i++]);
-	ft_putchar('\n');
+	ft_putchar('\n');*/
 	i = 0;
 	char *nbr4;
 	char *nbr3;
@@ -219,7 +253,7 @@ int		ft_binary_addition(long binary1, long binary2)
 	total1 = ft_strjoin(nbr4, nbr3);
 	total1 = ft_strjoin(total1, nbr2);
 	total1 = ft_strjoin(total1, nbr1);
-	printf("%s ", total1);
+//	printf("%s ", total1);
 	nbr1 = ft_itoa(bin4[4]);
 	nbr2 = ft_itoa(bin3[0]);
 	nbr3 = ft_itoa(bin3[1]);
@@ -227,7 +261,7 @@ int		ft_binary_addition(long binary1, long binary2)
 	total2 = ft_strjoin(nbr4, nbr3);
 	total2 = ft_strjoin(total2, nbr2);
 	total2 = ft_strjoin(total2, nbr1);
-	printf("%s ", total2);
+//	printf("%s ", total2);
 	nbr1 = ft_itoa(bin3[3]);
 	nbr2 = ft_itoa(bin3[4]);
 	nbr3 = ft_itoa(bin2[0]);
@@ -235,7 +269,7 @@ int		ft_binary_addition(long binary1, long binary2)
 	total3 = ft_strjoin(nbr1, nbr2);
 	total3 = ft_strjoin(total3, nbr3);
 	total3 = ft_strjoin(total3, nbr4);
-	printf("%s ", total3);
+//	printf("%s ", total3);
 	nbr1 = ft_itoa(bin2[2]);
 	nbr2 = ft_itoa(bin2[3]);
 	nbr3 = ft_itoa(bin2[4]);
@@ -243,10 +277,10 @@ int		ft_binary_addition(long binary1, long binary2)
 	total4 = ft_strjoin(nbr1, nbr2);
 	total4 = ft_strjoin(total4, nbr3);
 	total4 = ft_strjoin(total4, nbr4);
-	printf("%s   ", total4);
+//	printf("%s   ", total4);
 //	printf("--%s--", nbr3);
 //	printf("--%s--", nbr4);
-	ft_putchar('\n');
+//	ft_putchar('\n');
 	char *bin=total1;
 	char *bina2 = total2;
 	char *bina3 = total3;
@@ -260,34 +294,56 @@ int		ft_binary_addition(long binary1, long binary2)
 	int num2 = 0;
 	int num3 = 0;
 	int num4 = 0;
+	int count_char = 0;
+	if (flags->capital == 0)
+		ft_putstr("ffff");
+	else
+		ft_putstr("FFFF");
+	count_char += 4;
 	do {
 		int b = *a=='1'?1:0;
 		num = (num<<1)|b;
 		 a++;
 	} 
 	while (*a);
-		printf("\n%x", num);
+	if (flags->capital == 0)
+		printf("%x", num);
+	else
+		printf("%X", num);
+	count_char++;
 	do {
 		int b = *bb=='1'?1:0;
 		num1 = (num1<<1)|b;
 		 bb++;
 	} 
 	while (*bb);
+	if (flags->capital == 0)
 		printf("%x", num1);
+	else
+		printf("%X", num1);
+	count_char++;
 	do {
 		int b = *cc=='1'?1:0;
 		num2 = (num2<<1)|b;
 		 cc++;
 	} 
 	while (*cc);
+	if (flags->capital == 0)
 		printf("%x", num2);
+	else
+		printf("%X", num2);
+	count_char++;
 	do {
 		int b = *dd=='1'?1:0;
 		num3 = (num3<<1)|b;
 		 dd++;
-	} 
+	}
 	while (*dd);
-		printf("%x\n", num3);
+	if (flags->capital == 0)
+		printf("%x", num3);
+	else
+		printf("%X", num3);
+	count_char++;
 //	do {
 //		int b = *dd=='1'?1:0;
 //		num4 = (num4<<1)|b;
@@ -306,7 +362,7 @@ int		ft_binary_addition(long binary1, long binary2)
 //	ft_bin_to_hex(ft_atoi(total4));
 
 //	ft_bin_to_hex(nombre);
-	return (0);
+	return (count_char);
 }
 /*
 char                    *ft_itoa_zero_startes(int n)
@@ -387,13 +443,13 @@ char		*ft_reverse_bin(char *str, char *str_new)
 
 	i = 0;
 	j = 0;
-    printf("LL%sLL\n", str);  
+ //   printf("LL%sLL\n", str);  
 	str2 = ft_strnew(ft_strlen(str + 1));
 	str2 = ft_strcpy(str2, str);
 	str2 = replace_char(str, '0', 'l');
 	str2 = replace_char(str, '1', '0');
 	str2 = replace_char(str, 'l', '1');
-    printf("UU%sUU\n", str2);  // He11o wor1d!
+   // printf("UU%sUU\n", str2);  // He11o wor1d!
 //    return 0;
 /*	while (str[i] != '\0')
 	{
@@ -412,11 +468,11 @@ char		*ft_reverse_bin(char *str, char *str_new)
 		i++;
 	}
 	str2[j] = '\0';
-	printf("aa%saa", str2);*/
+//	printf("aa%saa", str2);*/
 	return (str2);
 }
 
-int				ft_printf_negative_hex(int nbr)
+int				ft_printf_negative_hex(int nbr, t_flags *flags)
 {
 	int count_char;
 	int pos;
@@ -450,11 +506,11 @@ int				ft_printf_negative_hex(int nbr)
 	k = ft_strlen(res);
 	str = malloc(sizeof(char) * k + 1);
 //	char new_str[ft_strlen(res + 1)];
-	if (ft_strlen(res) < 32)
+	if (ft_strlen(res) < 16)
 	{
 		str = ft_strrev(res);
-		printf("--%s-- ", str);
-		printf("==%s==",str);
+//		printf("--%s-- ", str);
+//		printf("==%s==",str);
 		k--;
 		j--;
 		while (str[i] != '\0')
@@ -464,11 +520,11 @@ int				ft_printf_negative_hex(int nbr)
 			k--;
 			j--;
 		}
-		printf("$$%s$$",str);
+//		printf("$$%s$$",str);
 		new2 = ft_reverse_bin(str, new2);
-		printf("GG%sGG",new2);
+//		printf("GG%sGG",new2);
 		int diff = 16 - ft_strlen(new2);
-		printf("%d\n", diff);
+//		printf("%d\n", diff);
 		new3 = ft_strnew(diff);
 		i = 0;
 		if (diff > 0)
@@ -485,7 +541,7 @@ int				ft_printf_negative_hex(int nbr)
 //	printf("-*-%s-*-\n", new3);
 //	printf("--%ld--\n",ft_atoi_long(new3));
 //	printf("%ld\n", ft_atoi_long("+0000000000000001"));
-	ft_binary_addition(ft_atoi_long(new3), l_bin);
+	count_char += ft_binary_addition(ft_atoi_long(new3), l_bin, flags);
 //	ft_strjoin(binaire, ft_strrev(res));
 //	printf("%s\n", new);
 	return (count_char);
@@ -494,10 +550,14 @@ int				ft_printf_negative_hex(int nbr)
 int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 {
 	int i;
+	int count_char = 0;
 	int nbr;
 	char res[100];
 	char *base_low = "0123456789abcdef";
 	char *base_upp = "0123456789ABCDEF";
+	char w = ' ';
+	if (flags->zero == 1)
+		w = '0';
 	i = 0;
 	nbr = va_arg(arg, int);
 	if (nbr == 0)
@@ -515,28 +575,49 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 				nbr /= 16;
 				i++;
 			}
-//		while (res[i] != '\0')
 			res[i] = '\0';
 //		ft_putstrrev(res);
 		}
 		else
 		{
-			ft_printf_negative_hex(nbr);
+			flags->capital = 0;
+			count_char = ft_printf_negative_hex(nbr, flags);
 		}
 	}
 	else if (c == 'X')
 	{
-		while (nbr > 0)
+		if (nbr > 0)
 		{
-			res[i] = base_upp[nbr % 16];
-			nbr /= 16;
-			i++;
-		}
+			while (nbr > 0)
+			{
+				res[i] = base_upp[nbr % 16];
+				nbr /= 16;
+				i++;
+			}
 //		while (res[i] != '\0')
-		res[i++] = '\0';
+			res[i++] = '\0';
 //		ft_putstrrev(res);
+		}
+		else
+		{
+			flags->capital = 1;
+			count_char += ft_printf_negative_hex(nbr, flags);
+		}
 	}
 	ft_strrev(res);
+	if (flags->minus == 0)
+	{
+		if (flags->width > ft_strlen(res))
+			count_char += ft_putwidth(w, ft_strlen(res) , flags);
+	}
 	ft_putstr(ft_strrev(res));
-	return (ft_strlen(res));
+	if (flags->minus == 1)
+	{
+		if (flags->width > ft_strlen(res))
+			count_char += ft_putwidth(w, ft_strlen(res) , flags);
+	}
+	count_char += ft_strlen(res);
+//	if (nbr > 0 && flags->width == 0)
+//		return (ft_strlen(res));
+	return (count_char);
 }
