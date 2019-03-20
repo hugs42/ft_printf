@@ -362,6 +362,60 @@ int		ft_bin_to_hex(int nbr)
 	return (1);
 }
 
+void		ft_swap_char(char a, char b)
+{
+	char tmp;
+
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+char* replace_char(char* str, char find, char replace){
+    char *current_pos = strchr(str,find);
+    while (current_pos){
+        *current_pos = replace;
+        current_pos = strchr(current_pos,find);
+    }
+
+    return str;
+}
+char		*ft_reverse_bin(char *str, char *str_new)
+{
+	int i;
+	int j;
+	char *str2;
+
+	i = 0;
+	j = 0;
+    printf("LL%sLL\n", str);  
+	str2 = ft_strnew(ft_strlen(str + 1));
+	str2 = ft_strcpy(str2, str);
+	str2 = replace_char(str, '0', 'l');
+	str2 = replace_char(str, '1', '0');
+	str2 = replace_char(str, 'l', '1');
+    printf("UU%sUU\n", str2);  // He11o wor1d!
+//    return 0;
+/*	while (str[i] != '\0')
+	{
+		if (ft_strchr(str[i] == '0')
+		{
+			str2[j] = '1';
+			j++;
+		}
+		else if (str[i] == '1')
+		{
+			str2[j] = '0';
+			j++;
+		}
+		else
+			return ("ERROR");
+		i++;
+	}
+	str2[j] = '\0';
+	printf("aa%saa", str2);*/
+	return (str2);
+}
+
 int				ft_printf_negative_hex(int nbr)
 {
 	int count_char;
@@ -371,6 +425,8 @@ int				ft_printf_negative_hex(int nbr)
 	char *str;
 	char binaire[12] = "111111111111";
 	char new[32];
+	char *new2;
+	char *new3;
 	char bin1[4];
 	char bin2[4];
 	char bin3[4];
@@ -390,13 +446,14 @@ int				ft_printf_negative_hex(int nbr)
 		i++;
 	}
 	res[i] = '\0';
-	printf("--%s-- ", res);
 	i = 0;
 	k = ft_strlen(res);
 	str = malloc(sizeof(char) * k + 1);
+//	char new_str[ft_strlen(res + 1)];
 	if (ft_strlen(res) < 32)
 	{
-		str = res;
+		str = ft_strrev(res);
+		printf("--%s-- ", str);
 		printf("==%s==",str);
 		k--;
 		j--;
@@ -407,17 +464,28 @@ int				ft_printf_negative_hex(int nbr)
 			k--;
 			j--;
 		}
-		while (new[j] >= 0)
+		printf("$$%s$$",str);
+		new2 = ft_reverse_bin(str, new2);
+		printf("GG%sGG",new2);
+		int diff = 16 - ft_strlen(new2);
+		printf("%d\n", diff);
+		new3 = ft_strnew(diff);
+		i = 0;
+		if (diff > 0)
 		{
-			new[j] = '1';
-			j--;
+			while (diff > 0)
+			{
+				new3[i++] = '1';
+				diff--;
+			}
 		}
-		
 	}
-	printf("--%ld--\n",ft_atoi_long(new));
-
+//	printf("-*-%s-*-\n", new3);
+	new3 = ft_strjoin(new3, new2);
+//	printf("-*-%s-*-\n", new3);
+//	printf("--%ld--\n",ft_atoi_long(new3));
 //	printf("%ld\n", ft_atoi_long("+0000000000000001"));
-	ft_binary_addition(ft_atoi_long(new), l_bin);
+	ft_binary_addition(ft_atoi_long(new3), l_bin);
 //	ft_strjoin(binaire, ft_strrev(res));
 //	printf("%s\n", new);
 	return (count_char);
