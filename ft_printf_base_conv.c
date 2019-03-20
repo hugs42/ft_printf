@@ -232,48 +232,133 @@ int		ft_binary_addition(long binary1, long binary2)
 	nbr2 = ft_itoa(bin3[4]);
 	nbr3 = ft_itoa(bin2[0]);
 	nbr4 = ft_itoa(bin2[1]);
-	total3 = ft_strjoin(nbr4, nbr3);
-	total3 = ft_strjoin(total3, nbr2);
-	total3 = ft_strjoin(total3, nbr1);
+	total3 = ft_strjoin(nbr1, nbr2);
+	total3 = ft_strjoin(total3, nbr3);
+	total3 = ft_strjoin(total3, nbr4);
 	printf("%s ", total3);
 	nbr1 = ft_itoa(bin2[2]);
 	nbr2 = ft_itoa(bin2[3]);
 	nbr3 = ft_itoa(bin2[4]);
 	nbr4 = ft_itoa(bin1[0]);
-	total4 = ft_strjoin(nbr4, nbr3);
-	total4 = ft_strjoin(total4, nbr2);
-	total4 = ft_strjoin(total4, nbr1);
+	total4 = ft_strjoin(nbr1, nbr2);
+	total4 = ft_strjoin(total4, nbr3);
+	total4 = ft_strjoin(total4, nbr4);
 	printf("%s   ", total4);
 //	printf("--%s--", nbr3);
 //	printf("--%s--", nbr4);
 	ft_putchar('\n');
+	char *bin=total1;
+	char *bina2 = total2;
+	char *bina3 = total3;
+	char *bina4 = total4;
+	char *a = bin;
+	char *bb = bina2;
+	char *cc = bina3;
+	char *dd = bina4;
+	int num = 0;
+	int num1 = 0;
+	int num2 = 0;
+	int num3 = 0;
+	int num4 = 0;
+	do {
+		int b = *a=='1'?1:0;
+		num = (num<<1)|b;
+		 a++;
+	} 
+	while (*a);
+		printf("\n%x", num);
+	do {
+		int b = *bb=='1'?1:0;
+		num1 = (num1<<1)|b;
+		 bb++;
+	} 
+	while (*bb);
+		printf("%x", num1);
+	do {
+		int b = *cc=='1'?1:0;
+		num2 = (num2<<1)|b;
+		 cc++;
+	} 
+	while (*cc);
+		printf("%x", num2);
+	do {
+		int b = *dd=='1'?1:0;
+		num3 = (num3<<1)|b;
+		 dd++;
+	} 
+	while (*dd);
+		printf("%x\n", num3);
+//	do {
+//		int b = *dd=='1'?1:0;
+//		num4 = (num4<<1)|b;
+//		 dd++;
+//	} 
+//	while (*cc);
+//		printf("%X\n", num1);
+
+//	int final_hex1;
+//	int final_hex2;
+//	int final_hex3;
+//	int final_hex4;
+//	printf("--%d\n", ft_bin_to_hex(ft_atoi(total1)));
+//	ft_bin_to_hex(ft_atoi(total2));
+//	ft_bin_to_hex(ft_atoi(total3));
+//	ft_bin_to_hex(ft_atoi(total4));
 
 //	ft_bin_to_hex(nombre);
 	return (0);
 }
+/*
+char                    *ft_itoa_zero_startes(int n)
+{
+        char                    *str;
+        size_t                  len;
+        unsigned int    n_tmp;
+		int start_by_zero;
 
-
+        len = ft_str_len(n);
+        n_tmp = n;
+		int start_by_zero
+        if (n < 0)
+        {
+                n_tmp = -n;
+                len++;
+        }
+        if (!(str = ft_strnew(len)))
+                return (NULL);
+        str[--len] = n_tmp % 10 + '0';
+        while (n_tmp /= 10)
+                str[--len] = n_tmp % 10 + '0';
+        if (n < 0)
+                *(str + 0) = '-';
+        return (str);
+}
+*/
 int		ft_bin_to_hex(int nbr)
 {
 	int i;
 	char res[100];
 	char *base_low = "0123456789abcdef";
 	char *base_upp = "0123456789ABCDEF";
-	i = 0;
-	if (nbr == 0)
-	{
-		ft_putchar('0');
-		return (1);
-	}
+	i = 1;
+	int hexa = 0;
+	int remainder = 1;
+//	if (nbr == 0)
+//	{
+//		ft_putchar('0');
+//		return (1);
+//	}
 	while (nbr > 0)
 	{
-		res[i] = base_low[nbr % 16];
-		nbr /= 16;
-		i++;
+		remainder = nbr % 10;
+		hexa = hexa + remainder * i;
+		i = i * 2;
+		nbr = nbr / 10;
 	}
 //		while (res[i] != '\0')
-	res[i] = '\0';
-	ft_putstrrev(res);
+//	res[i] = '\0';
+//	printf("%d --res--", hexa);
+//	ft_putstrrev(res);
 	return (1);
 }
 
@@ -285,7 +370,7 @@ int				ft_printf_negative_hex(int nbr)
 	char res[100];
 	char *str;
 	char binaire[12] = "111111111111";
-	char new[16];
+	char new[32];
 	char bin1[4];
 	char bin2[4];
 	char bin3[4];
@@ -295,7 +380,7 @@ int				ft_printf_negative_hex(int nbr)
 	int k = 0;
 	int bin;
 	int len = 0;
-	long l_bin = 0000000000000001;
+	long l_bin = 00000000000000000000000000000001;
 	bin = 0;
 	nbr -= (nbr * 2);
 	while (nbr > 0)
@@ -305,12 +390,16 @@ int				ft_printf_negative_hex(int nbr)
 		i++;
 	}
 	res[i] = '\0';
+	printf("--%s-- ", res);
 	i = 0;
 	k = ft_strlen(res);
 	str = malloc(sizeof(char) * k + 1);
-	if (ft_strlen(res) < 16)
+	if (ft_strlen(res) < 32)
 	{
 		str = res;
+		printf("==%s==",str);
+		k--;
+		j--;
 		while (str[i] != '\0')
 		{
 			new[j] = str[k];
@@ -325,7 +414,8 @@ int				ft_printf_negative_hex(int nbr)
 		}
 		
 	}
-//	printf("%ld\n",ft_atoi_long(new));
+	printf("--%ld--\n",ft_atoi_long(new));
+
 //	printf("%ld\n", ft_atoi_long("+0000000000000001"));
 	ft_binary_addition(ft_atoi_long(new), l_bin);
 //	ft_strjoin(binaire, ft_strrev(res));
