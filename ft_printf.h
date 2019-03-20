@@ -81,5 +81,7 @@ char	*ft_itoai_doule(int n);
 int		ft_putzero_adress(int len);
 char	*ft_strrev(char *str);
 int		ft_putwidth_by_prec(char c, int len, t_flags *flags);
-
+int		ft_printf_negative_hex(int nbr);
+int		ft_binary_addition(long bin_1, long bin_2);
+long	ft_atoi_long(const char *str);
 #endif
