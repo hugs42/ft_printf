@@ -84,4 +84,10 @@ int		ft_putwidth_by_prec(char c, int len, t_flags *flags);
 int		ft_printf_negative_hex(int nbr);
 int		ft_binary_addition(long bin_1, long bin_2);
 long	ft_atoi_long(const char *str);
+int		*ft_intsub(const int *hexa, unsigned int start, int len);
+int		**ft_add(const int *hexa, int **tab);
+int		**ft_split_hexa(const int *hexa);
+int		*ft_intcpy(int *dest, const int *src, size_t n);
+int		ft_bin_to_hex(int nbr);
+
 #endif
