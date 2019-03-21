@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:03:21 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/12 19:01:42 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/21 17:37:48 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int		main(void)
 {
 //	ft_atoi_base(42);
-	ft_printf("%03.2d",1);
+	ft_printf("%0+5d",42);
 	ft_putchar('\n');
-	printf("%03.2d", 1);
+	printf("%0+5d", 42);
 	return (0);
 }

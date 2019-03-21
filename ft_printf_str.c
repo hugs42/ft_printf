@@ -17,8 +17,15 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	str = va_arg(arg, char *);
 	len = ft_strlen(str);
 	width = flags->width;
-	if ((str == NULL || ft_strcmp(str, "") == 0) && (flags->width == 0))
-		return (0);
+	if ((str == NULL && ft_strcmp(str, "") != 0) && (flags->width == 0))
+	{
+		if (flags->width > 1)
+			count_char += ft_putwidth(c, 10, flags);
+		ft_putchar('\0');
+		count_char += 1;
+	}
+//	else if (ft ft_strcmp(str, "") != 0))
+//		
 	if (flags->space == 1 && flags->zero == 0 && flags->minus == 0 && flags->width > len && flags->plus == 0)
 	{
 		ft_putchar(' ');
@@ -37,22 +44,18 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	{
 		count_char += ft_putwidth(c, len, flags);
 	}
-//	if (flags->precision >= 1)
-//	{
-		if (flags->precision == 1 && flags->width == 0)
-			return (SUCCESS);
-		else if (flags->precision >= 1 && flags->precision <= len && flags->width > len && flags->minus == 0)
-			count_char += ft_putwidth(c, len - (len - flags->precision), flags);
-//		else if (flags->precision >= 1 && flags->precision <= len && flags->width < len && flags->minus == 0)
-//			ft_putwidth(c, len - (len - flags->precision), flags);
-		else if (flags->precision >= 1 && flags->precision > len && flags->width > len && flags->minus == 0)
-			count_char += ft_putwidth(c, len, flags);
-//		else if (flags->precision >= 1 && flags->precision < len && flags->width > len && flags->minus == 0)
-//			ft_putwidth(c, len, flags);
 
-//	if (flags->is_precision == 1 && flags->precision == 0)
-//		ft_putchar(c);
-//	printf("%d -", flags->width);
+	if (flags->precision == 1 && flags->width == 0)
+		return (SUCCESS);
+	if (flags->minus == 0)
+	{
+		if (flags->precision >= 1 && flags->precision <= len && flags->width > len)
+			count_char += ft_putwidth(c, len - (len - flags->precision), flags);
+		else if (flags->precision == 0 && flags->width > len)
+			count_char += ft_putwidth(c, len, flags);
+		else if (flags->precision >= 1 && flags->precision > len && flags->width > len)
+			count_char += ft_putwidth(c, len, flags);
+	}
 	if ((flags->precision >= 1) && (flags->precision < len))
 	{
 		if (flags->minus == 0 && flags->width != flags->precision && flags->width < len)
@@ -109,6 +112,8 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		{
 			count_char += ft_putwidth('u', len, flags);
 		}
+		else if (flags->precision == 0 && flags->width > len)
+			count_char += ft_putwidth(c, len, flags);
 	}
 //	printf("\n%d\n %", count_char);
 	return (count_char);

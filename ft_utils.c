@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 19:02:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/12 19:00:33 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/21 17:57:20 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,16 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 	{
 //		if (flags->flag == 'd' && flags->zero > 0 && flags->plus == 1 && flags->width > len)
 //			width--;
-		if (flags->plus == 1 && flags->is_negative == 0)
+//		ft_putstr("ting");
+		if ((flags->plus == 1 && flags->is_negative == 0) || (flags->flag == 'd' && flags->plus == 1))
 		{
 			len++;
 			count_char--;
 		}
 		else if (flags->plus == 1 && flags->is_negative == 1)
 			count_char--;
+//		if (flags->flag == 'd' && flags->plus == 1)
+//			len++;
 		while (width > len + 1)
 		{
 			ft_putchar(c);
@@ -141,7 +144,7 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 			width--;
 		}
 		if (flags->plus == 1  && flags->zero == 0 && flags->flag != 'c' && flags->flag != 'p' && flags->flag !='s' && flags->flag != 'd')
-			ft_putchar('i');
+			ft_putchar(' ');
 		else if ((flags->plus == 0) && (flags->space == 1))
 			return (SUCCESS);
 		else if (flags->plus != 1)
