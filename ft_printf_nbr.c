@@ -126,11 +126,13 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		len_nbr++;
 		flags->space = 0;
 	}
+	if (i < 0)
+		flags->is_negative = 1;
 //	if (flags->minus == 1 && flags->plus == 1)
 //		ft_putchar('+');
 	if (flags->minus == 1 && flags->zero == 1)
 		c = ' ';
-	if ((flags->space == 1) && (flags->width == 0))
+	if ((flags->space == 1) && (flags->width == 0) && (i >= 0))
 	{
 		ft_putchar(' ');
 		count_char++;
@@ -153,16 +155,23 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		ft_putchar(' ');
 	else if ((flags->plus == 0) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->space == 1)) //&& (flags->zero > 0))
 		ft_putchar(' ');
+
 //	count_char++;
 	else
 		count_char --;
 	count_char++;
 	len_nbr = ft_strlen(ft_itoa(i));
+	if (/*(flags->plus == 1) &&*/ (i < 0)/* && (flags->width > len_nbr) */ &&  (flags->zero > 0))
+		ft_putchar('-');
 	if ((width > len_nbr) && (minus == 0) && (flags->precision < len_nbr))
+	{
+		if (flags->plus == 1)
+			len_nbr--;
 		count_char += ft_putwidth(c, len_nbr, flags);
+	}
 	else if ((width > len_nbr) && (minus == 0) && (flags->precision > len_nbr))
 		count_char += ft_putwidth(c, len_nbr + flags->precision - 2, flags);
-	if ((flags->plus == 1) && (i >= 0))// && (flags->width == 0))
+	if ((flags->plus == 1) && (i >= 0) && (flags->zero == 0))// && (flags->width == 0))
 	{
 		ft_putchar('+');
 		count_char++;
@@ -170,11 +179,11 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	len_nbr = ft_strlen(ft_itoa(i));
 	prec = flags->precision;
 //	printf("%d", len_nbr);
-	if (prec > len_nbr)
+	if (prec > len_nbr && flags->zero != 0 && flags->zero ==0)
 	{
 		while (prec > len_nbr)
 		{
-			ft_putchar('0');
+			ft_putchar('+');
 			count_char++;
 			prec--;
 		}
@@ -202,7 +211,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	}*/
 //		if ((flags->plus == 1) && (i >= 0))
 //			ft_putchar('+');
-	ft_putnbr(i);
+	ft_printf_putnbr(i, flags);
 	width = flags->width;
 	count_char += len_nbr;
 	if ((width > len_nbr) && (minus == 1))

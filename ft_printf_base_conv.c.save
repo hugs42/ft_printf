@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -37,28 +38,6 @@ static int		conv_ex(int nb)
 		return (nb - 10 + 'a');
 	else
 		return (nb + '0');
-}
-
-void    ft_printf_putnbr(int nb, t_flags *flags)
-{
-	if (nb == -2147483648)
-			ft_putstr("-2147483648");
-	else
-	{
-		if (nb < 0)
-		{
-			if (flags->zero == 0)
-				ft_putchar('-');
-			nb = -nb;
-                }
-                if (nb >= 10)
-                {
-                        ft_putnbr(nb / 10);
-                        ft_putnbr(nb % 10);
-                }
-                else
-                        ft_putchar(nb + 48);
-        }
 }
 
 char	*itoa_base(int value, int base)
@@ -595,7 +574,6 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 	}
 	if (c == 'x')
 	{
-	flags->capital = 0;
 		if (nbr > 0)
 		{
 			while (nbr > 0)
@@ -609,12 +587,12 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 		}
 		else
 		{
+			flags->capital = 0;
 			count_char = ft_printf_negative_hex(nbr, flags);
 		}
 	}
 	else if (c == 'X')
 	{
-	flags->capital = 1;
 		if (nbr > 0)
 		{
 			while (nbr > 0)
@@ -629,6 +607,7 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 		}
 		else
 		{
+			flags->capital = 1;
 			count_char += ft_printf_negative_hex(nbr, flags);
 		}
 	}
@@ -652,6 +631,7 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 		else
 			ft_putstr("0x");
 	}
+
 	ft_putstr(ft_strrev(res));
 	if (flags->minus == 1)
 	{

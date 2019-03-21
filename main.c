@@ -15,8 +15,8 @@
 int		main(void)
 {
 //	ft_atoi_base(42);
-	ft_printf("%-10x", 42);
+	ft_printf("%03.2d",1);
 	ft_putchar('\n');
-	printf("%-10x", 42);
+	printf("%03.2d", 1);
 	return (0);
 }
