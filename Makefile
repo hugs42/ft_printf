@@ -6,7 +6,7 @@
 #    By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 12:18:47 by hugsbord          #+#    #+#              #
-#    Updated: 2019/03/21 16:18:47 by hugsbord         ###   ########.fr        #
+#    Updated: 2019/03/22 13:35:21 by hugsbord         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,8 @@ SRC_PRINTF = ft_formating.c \
 			ft_printf_str.c \
 			ft_printf_char.c \
 			ft_printf_p_addr.c \
-			ft_printf_type_conversion.c
+			ft_printf_type_conversion.c \
+			ft_printf_octal.c
 
 OBJ = $(SRC:.c=.o)
 

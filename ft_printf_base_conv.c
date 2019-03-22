@@ -6,30 +6,11 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:42:13 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/21 17:34:52 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/22 13:34:56 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int				ft_printf_octal(const char *format, va_list arg, t_flags *flags)
-{
-	int i;
-	int nbr;
-	char *res = NULL;
-	char *base = "01234567";
-	i = 0;
-	nbr = va_arg(arg, int);
-	while (nbr > 0)
-	{
-		res[i] = base[nbr % 8];
-		nbr /= 8;
-		i++;
-	}
-	res[i] = '\0';
-	ft_putstrrev(res);
-	return (SUCCESS);
-}
 
 static int		conv_ex(int nb)
 {
@@ -208,7 +189,7 @@ int		ft_binary_addition(long binary1, long binary2, t_flags *flags)
 	if (remainder != 0)
 		sum[i++] = remainder;
 	--i;
-	int ww = i;
+//	int ww = i;
 //	while (ww >= 0)
 //		printf("%d", sum[ww--]);
 //	ft_putchar('\n');
@@ -315,7 +296,7 @@ int		ft_binary_addition(long binary1, long binary2, t_flags *flags)
 	int num1 = 0;
 	int num2 = 0;
 	int num3 = 0;
-	int num4 = 0;
+//	int num4 = 0;
 	int count_char = 0;
 	if (flags->capital == 0)
 		ft_putstr("ffff");
@@ -415,9 +396,9 @@ char                    *ft_itoa_zero_startes(int n)
 int		ft_bin_to_hex(int nbr)
 {
 	int i;
-	char res[100];
-	char *base_low = "0123456789abcdef";
-	char *base_upp = "0123456789ABCDEF";
+//	char res[100];
+//	char *base_low = "0123456789abcdef";
+//	char *base_upp = "0123456789ABCDEF";
 	i = 1;
 	int hexa = 0;
 	int remainder = 1;
@@ -496,24 +477,24 @@ char		*ft_reverse_bin(char *str, char *str_new)
 
 int				ft_printf_negative_hex(int nbr, t_flags *flags)
 {
-	int count_char;
-	int pos;
+	int count_char = 0;
+//	int pos;
 	char *base_2 = "01";
 	char res[100];
 	char *str;
-	char binaire[12] = "111111111111";
+//	char binaire[12] = "111111111111";
 	char new[32];
-	char *new2;
+	char *new2 = NULL;
 	char *new3;
-	char bin1[4];
-	char bin2[4];
-	char bin3[4];
-	char bin4[5];
+//	char bin1[4];
+//	char bin2[4];
+//	char bin3[4];
+//	char bin4[5];
 	int i = 0;
 	int j = 16;
 	int k = 0;
 	int bin;
-	int len = 0;
+//	int len = 0;
 	long l_bin = 00000000000000000000000000000001;
 	bin = 0;
 	nbr -= (nbr * 2);

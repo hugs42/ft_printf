@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:03:21 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/21 17:37:48 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/22 13:46:11 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int		main(void)
 {
 //	ft_atoi_base(42);
-	ft_printf("%ls", -42);
+	ft_printf("%-10o", 40);
 	ft_putchar('\n');
-	printf("%ls", "-42");
+	printf("%-10o", 40);
 	return (0);
 }

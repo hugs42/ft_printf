@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/21 17:46:48 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/22 12:36:15 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 	char c = ' ';
 	int tmp;
 	int len_nbr;
-	int len_nbr_total;
-	int test = 12345;
-	double tet = 345.22;
-	char *rrr[32];
+//	int len_nbr_total;
+//	int test = 12345;
+//	double tet = 345.22;
+//	char *rrr[32];
 	nbr = va_arg(arg, double);
 	len_nbr = ft_str_len(nbr);
 	int len_nbr2;
@@ -163,14 +163,18 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	len_nbr = ft_strlen(ft_itoa(i));
 	if (/*(flags->plus == 1) &&*/ (i < 0)/* && (flags->width > len_nbr) */ &&  (flags->zero > 0))
 		ft_putchar('-');
-	if ((width > len_nbr) && (minus == 0) && (flags->precision < len_nbr))
+
+	if (flags->minus == 0)
 	{
-		if (flags->plus == 1)
-			len_nbr--;
+		if ((width > len_nbr)  && (flags->precision < len_nbr))
+		{
+			if (flags->plus == 1)
+				len_nbr--;
 		count_char += ft_putwidth(c, len_nbr, flags);
+		}
+		else if ((width > len_nbr) && (flags->precision > len_nbr))
+			count_char += ft_putwidth(c, len_nbr + flags->precision - 2, flags);
 	}
-	else if ((width > len_nbr) && (minus == 0) && (flags->precision > len_nbr))
-		count_char += ft_putwidth(c, len_nbr + flags->precision - 2, flags);
 	if ((flags->plus == 1) && (i >= 0) && (flags->zero == 0))// && (flags->width == 0))
 	{
 		ft_putchar('+');
