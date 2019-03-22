@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/22 12:36:15 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/22 14:43:00 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,24 @@ int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 int				ft_printf_unsigned_int(const char *format, va_list arg, t_flags *flags)
 {
 	unsigned int i;
+	int count_char = 0;
 	char *str = NULL;
-
+	int prec = flags->precision;
+	int len_nbr = ft_strlen(ft_itoa(i));
 	i = va_arg(arg, unsigned int);
 	str = ft_itoa(i);
+	if (prec > len_nbr)
+	{
+		while (prec > len_nbr + 1)
+		{
+			ft_putchar('0');
+			count_char++;
+			prec--;
+		}
+	}
 	ft_putstr(str);
-	return (SUCCESS);
+	count_char += ft_strlen(str);
+	return (count_char);
 }
 
 int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
@@ -173,7 +185,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		count_char += ft_putwidth(c, len_nbr, flags);
 		}
 		else if ((width > len_nbr) && (flags->precision > len_nbr))
-			count_char += ft_putwidth(c, len_nbr + flags->precision - 2, flags);
+			count_char += ft_putwidth(c, flags->precision, flags);
 	}
 	if ((flags->plus == 1) && (i >= 0) && (flags->zero == 0))// && (flags->width == 0))
 	{
@@ -183,7 +195,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	len_nbr = ft_strlen(ft_itoa(i));
 	prec = flags->precision;
 //	printf("%d", len_nbr);
-	if (prec > len_nbr && flags->zero != 0 && flags->zero ==0)
+/*	if (prec > len_nbr && flags->zero != 0 && flags->zero ==0)
 	{
 		while (prec > len_nbr)
 		{
@@ -191,8 +203,18 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 			count_char++;
 			prec--;
 		}
+	}*/
+	if (prec > len_nbr)
+	{
+		while (prec > len_nbr)
+		{
+			ft_putchar('0');
+			count_char++;
+			prec--;
+		}
 	}
-/*		if ((flags->space == 1) && (flags->zero == 1))
+/*		
+*		if ((flags->space == 1) && (flags->zero == 1))
 		{
 			ft_putchar(' ');
 			len_nbr++;

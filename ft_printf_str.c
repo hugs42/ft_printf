@@ -49,6 +49,8 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		return (SUCCESS);
 	if (flags->minus == 0)
 	{
+	if ((flags->precision == 0) && ((flags->width > ft_strlen(str))))
+		count_char += ft_putwidth(c, len, flags);
 		if (flags->precision >= 1 && flags->precision <= len && flags->width > len)
 			count_char += ft_putwidth(c, len - (len - flags->precision), flags);
 //		else if (flags->precision == 0 && flags->width > len)
@@ -87,8 +89,7 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		count_char += ft_strlen(str);
 	}
 //	if ((flags->precision == 0) && ((flags->width > ft_strlen(str))))
-//	{
-//	ft_putwidth(c, len, flags);
+//		ft_putwidth(c, len, flags);
 //		ft_putchar('@');
 //		ft_putstr(str);
 //	}

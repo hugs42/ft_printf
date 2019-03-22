@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:42:13 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/22 13:34:56 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/22 14:17:32 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -557,6 +557,8 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 	int count_char = 0;
 	int nbr;
 	char res[100];
+	int prec = flags->precision;
+	int prec_len = 0;
 	char *base_low = "0123456789abcdef";
 	char *base_upp = "0123456789ABCDEF";
 	char w = ' ';
@@ -628,8 +630,9 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 	}
 	if (flags->minus == 0)
 	{
-		if (flags->width > ft_strlen(res))
+		if (flags->width > ft_strlen(res) && flags->precision <= ft_strlen(res))
 			count_char += ft_putwidth(w, ft_strlen(res) + sh, flags);
+
 	}
 	if (flags->sharp == 1 && flags->zero == 0)
 	{
@@ -638,11 +641,21 @@ int				ft_printf_hex(const char *format, va_list arg, char c, t_flags *flags)
 		else
 			ft_putstr("0x");
 	}
+	if (prec > ft_strlen(res))
+	{
+		while (prec > ft_strlen(res))
+		{
+			ft_putchar('0');
+			prec--;
+			prec_len++;
+			count_char++;
+		}
+	}
 	ft_putstr(ft_strrev(res));
 	if (flags->minus == 1)
 	{
 		if (flags->width > ft_strlen(res))
-			count_char += ft_putwidth(w, ft_strlen(res) + sh, flags);
+			count_char += ft_putwidth(w, ft_strlen(res) + sh + prec_len, flags);
 	}
 	count_char += ft_strlen(res);
 //	if (nbr > 0 && flags->width == 0)
