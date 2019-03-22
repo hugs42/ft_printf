@@ -1,4 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/22 15:50:09 by hugsbord          #+#    #+#             */
+/*   Updated: 2019/03/22 16:10:12 by hugsbord         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+
+int			ft_printf_str_null(const char *format, va_list arg, t_flags *flags)
+{
+	int count_char = 0;
+	ft_putstr("(null)");
+	return (count_char);
+}
 
 int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 {
@@ -14,9 +33,19 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	count_char = 0;
 	l = 0;
 	flags->flag = 's';
-	str = va_arg(arg, char *);
+	if ((str = va_arg(arg, char *)) == (NULL))
+	{
+		ft_strdel(&str);
+		ft_printf_str_null(format, arg, flags);
+	}
 	len = ft_strlen(str);
 	width = flags->width;
+	if (str == NULL)
+	{
+		
+		ft_printf_str_null(format, arg, flags);
+		return (1);
+	}
 	if ((str == NULL && ft_strcmp(str, "") != 0) && (flags->width == 0))
 	{
 		if (flags->width > 1)
@@ -24,8 +53,6 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		ft_putchar('\0');
 		count_char += 1;
 	}
-//	else if (ft ft_strcmp(str, "") != 0))
-//		
 	if (flags->space == 1 && flags->zero == 0 && flags->minus == 0 && flags->width > len && flags->plus == 0)
 	{
 		ft_putchar(' ');

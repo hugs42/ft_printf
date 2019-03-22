@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:53 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 16:49:49 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/03/22 15:59:00 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,6 @@ int		**ft_split_hexa(const int *hexa);
 int		*ft_intcpy(int *dest, const int *src, size_t n);
 int		ft_bin_to_hex(int nbr);
 void	ft_printf_putnbr(int nbr, t_flags *flagw);
+int		ft_printf_str_null(const char *format, va_list arg, t_flags *flags);
+
 #endif

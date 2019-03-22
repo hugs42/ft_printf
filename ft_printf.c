@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 18:38:12 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/22 16:04:54 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ int		ft_printf_csp_case(const char *format, va_list arg, int i ,t_flags *flags)
 	count_char = 0;
 	if (format[i] == 'c')
 		count_char += ft_printf_char(format, arg, flags);
-	else if (format[i] == 's')
+	else if (format[i] == 's') //&& va_arg(arg, char *) != NULL)
 		count_char += ft_printf_str(format, arg, flags);
+//	else if (format[i] == 's')
+//	{
+//		count_char += ft_printf_str_null(format, arg, flags);
+//	}
 	else if (format[i] == 'p')
 		count_char += ft_printf_addr(format, arg, flags);
 	return (count_char);
