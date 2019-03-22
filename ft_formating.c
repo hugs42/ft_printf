@@ -46,7 +46,7 @@ int		ft_set_specifier(const char *format, int i, t_flags *flags)
 		flags->hh = 1;
 	else
 		flags->hh = 0;
-return (SUCCESS);
+	return (SUCCESS);
 }
 
 int		ft_get_precision(const char *format, int i)

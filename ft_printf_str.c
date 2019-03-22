@@ -51,8 +51,8 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	{
 		if (flags->precision >= 1 && flags->precision <= len && flags->width > len)
 			count_char += ft_putwidth(c, len - (len - flags->precision), flags);
-		else if (flags->precision == 0 && flags->width > len)
-			count_char += ft_putwidth(c, len, flags);
+//		else if (flags->precision == 0 && flags->width > len)
+//			count_char += ft_putwidth('j', len, flags);
 		else if (flags->precision >= 1 && flags->precision > len && flags->width > len)
 			count_char += ft_putwidth(c, len, flags);
 	}
