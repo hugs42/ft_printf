@@ -6,7 +6,7 @@
 #    By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 12:18:47 by hugsbord          #+#    #+#              #
-#    Updated: 2019/03/22 13:35:21 by hugsbord         ###   ########.fr        #
+#    Updated: 2019/03/22 14:54:07 by hugsbord         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SRC_LIBFT =	ft_atoi.c	\
 
 SRC_PRINTF = ft_formating.c \
 			ft_printf_nbr.c \
+			ft_printf_unsigned_int.c \
 			ft_utils.c \
 			ft_printf.c \
 			ft_printf_base_conv.c \

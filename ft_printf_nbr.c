@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/22 14:43:00 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/22 14:52:02 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_printf_long_double(const char *format,va_list arg, t_flags *flags)
 	ft_putnbr(tmp);
 	return (SUCCESS);
 }
-#include <stdio.h>
+
 int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 {
 	double nbr;
@@ -88,29 +88,6 @@ int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 	if ((flags->width > ft_strlen(nbr_tmp_final2)) && (flags-> minus == 1) && flags->precision < 1)
 		ft_putwidth(' ', ft_strlen(nbr_tmp_final2), flags);
 	return (SUCCESS);
-}
-
-int				ft_printf_unsigned_int(const char *format, va_list arg, t_flags *flags)
-{
-	unsigned int i;
-	int count_char = 0;
-	char *str = NULL;
-	int prec = flags->precision;
-	int len_nbr = ft_strlen(ft_itoa(i));
-	i = va_arg(arg, unsigned int);
-	str = ft_itoa(i);
-	if (prec > len_nbr)
-	{
-		while (prec > len_nbr + 1)
-		{
-			ft_putchar('0');
-			count_char++;
-			prec--;
-		}
-	}
-	ft_putstr(str);
-	count_char += ft_strlen(str);
-	return (count_char);
 }
 
 int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
