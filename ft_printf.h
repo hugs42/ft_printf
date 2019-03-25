@@ -35,8 +35,8 @@ typedef struct			s_flags
 	int					plus;
 	int					space;
 	int					width;
-	size_t				len;
-	size_t				len_min;
+	int					len;
+	int					len_min;
 	int					is_precision;
 	int					precision;
 	int					is_negative;
@@ -91,7 +91,7 @@ int		**ft_add(const int *hexa, int **tab);
 int		**ft_split_hexa(const int *hexa);
 int		*ft_intcpy(int *dest, const int *src, size_t n);
 int		ft_bin_to_hex(int nbr);
-void	ft_printf_putnbr(int nbr, t_flags *flagw);
+void	ft_printf_putnbr(int nbr, t_flags *flags, int len);
 int		ft_printf_str_null(const char *format, va_list arg, t_flags *flags);
 
 #endif

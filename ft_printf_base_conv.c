@@ -20,7 +20,7 @@ static int		conv_ex(int nb)
 		return (nb + '0');
 }
 
-void    ft_printf_putnbr(int nb, t_flags *flags)
+void    ft_printf_putnbr(int nb, t_flags *flags, int len)
 {
 	if (nb == -2147483648)
 			ft_putstr("-2147483648");
@@ -28,18 +28,18 @@ void    ft_printf_putnbr(int nb, t_flags *flags)
 	{
 		if (nb < 0)
 		{
-			if (flags->zero == 0)
+			if (flags->zero == 0 && flags->precision < len)
 				ft_putchar('-');
 			nb = -nb;
-                }
-                if (nb >= 10)
-                {
-                        ft_putnbr(nb / 10);
-                        ft_putnbr(nb % 10);
-                }
-                else
-                        ft_putchar(nb + 48);
-        }
+		}
+		if (nb >= 10)
+		{
+			ft_putnbr(nb / 10);
+			ft_putnbr(nb % 10);
+		}
+		else
+			ft_putchar(nb + 48);
+		}
 }
 
 char	*itoa_base(int value, int base)

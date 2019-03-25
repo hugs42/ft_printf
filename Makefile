@@ -92,6 +92,7 @@ SRC_LIBFT =	ft_atoi.c	\
 
 SRC_PRINTF = ft_formating.c \
 			ft_printf_nbr.c \
+			ft_printf_int.c \
 			ft_printf_unsigned_int.c \
 			ft_utils.c \
 			ft_printf.c \

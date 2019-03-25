@@ -39,6 +39,7 @@ int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 //	char *rrr[32];
 	nbr = va_arg(arg, double);
 	len_nbr = ft_str_len(nbr);
+	flags->len = len_nbr;
 	int len_nbr2;
 	char *nbr_tmp1;
 	int li;
@@ -89,7 +90,7 @@ int				ft_printf_double(const char *format,va_list arg, t_flags *flags)
 		ft_putwidth(' ', ft_strlen(nbr_tmp_final2), flags);
 	return (SUCCESS);
 }
-
+/*
 int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 {
 	int i;
@@ -150,7 +151,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		count_char --;
 	count_char++;
 	len_nbr = ft_strlen(ft_itoa(i));
-	if (/*(flags->plus == 1) &&*/ (i < 0)/* && (flags->width > len_nbr) */ &&  (flags->zero > 0))
+	if ((flags->plus == 1) && (i < 0) && (flags->width > len_nbr)  &&  (flags->zero > 0))
 		ft_putchar('-');
 
 	if (flags->minus == 0)
@@ -180,7 +181,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 			count_char++;
 			prec--;
 		}
-	}*/
+	}
 	if (prec > len_nbr)
 	{
 		while (prec > len_nbr)
@@ -190,7 +191,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 			prec--;
 		}
 	}
-/*		
+*		
 *		if ((flags->space == 1) && (flags->zero == 1))
 		{
 			ft_putchar(' ');
@@ -211,7 +212,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	{
 		ft_putchar(' ');
 		len_nbr++;
-	}*/
+	}
 //		if ((flags->plus == 1) && (i >= 0))
 //			ft_putchar('+');
 	ft_printf_putnbr(i, flags);
@@ -228,4 +229,4 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	}
 	return (count_char);
 }
-
+*/

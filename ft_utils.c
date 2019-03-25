@@ -112,6 +112,7 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 {
 	int width;
 	int tmp = len;
+	int tmp2= len;
 	int count_char;
 
 	count_char = 0;
@@ -143,10 +144,15 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 			count_char++;
 			width--;
 		}
+
 		if (flags->plus == 1  && flags->zero == 0 && flags->flag != 'c' && flags->flag != 'p' && flags->flag !='s' && flags->flag != 'd')
 			ft_putchar(' ');
+//		if (flags->precision>len && flags->is_negative == 1)
+//			ft_putchar('-');
 		else if ((flags->plus == 0) && (flags->space == 1))
 			return (SUCCESS);
+		else if (flags->is_negative == 1 && flags->precision > flags->len)
+			ft_putchar('-');
 		else if (flags->plus != 1)
 			ft_putchar(c);
 		count_char++;

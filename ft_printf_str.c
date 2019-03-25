@@ -26,7 +26,7 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	int width;
 	int i;
 	int pp;
-	char c;
+	char c = '\0';
 	int l;
 	int count_char;
 
@@ -35,16 +35,16 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 	flags->flag = 's';
 	if ((str = va_arg(arg, char *)) == (NULL))
 	{
-		ft_strdel(&str);
-		ft_printf_str_null(format, arg, flags);
+//		ft_strdel(&str);
+//		ft_printf_str_null(format, arg, flags);
 	}
 	len = ft_strlen(str);
 	width = flags->width;
 	if (str == NULL)
 	{
 		
-		ft_printf_str_null(format, arg, flags);
-		return (1);
+//		ft_printf_str_null(format, arg, flags);
+//		return (1);
 	}
 	if ((str == NULL && ft_strcmp(str, "") != 0) && (flags->width == 0))
 	{
@@ -67,17 +67,15 @@ int				ft_printf_str(const char *format, va_list arg, t_flags *flags)
 		c = '0';
 	else
 		c = ' ';
-	if ((width > len) && (flags->minus == 0) && (flags->precision == 0) && (flags->is_precision == 0))
-	{
-		count_char += ft_putwidth(c, len, flags);
-	}
 
 	if (flags->precision == 1 && flags->width == 0)
 		return (SUCCESS);
 	if (flags->minus == 0)
 	{
-	if ((flags->precision == 0) && ((flags->width > ft_strlen(str))))
-		count_char += ft_putwidth(c, len, flags);
+//		if ((width > len) && (flags->precision == 0) && (flags->is_precision == 0))
+//			count_char += ft_putwidth('o', len, flags);
+		if ((flags->precision == 0) && ((flags->width > ft_strlen(str))))
+			count_char += ft_putwidth(c, len, flags);
 		if (flags->precision >= 1 && flags->precision <= len && flags->width > len)
 			count_char += ft_putwidth(c, len - (len - flags->precision), flags);
 //		else if (flags->precision == 0 && flags->width > len)
