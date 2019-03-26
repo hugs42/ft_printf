@@ -6,13 +6,13 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 17:02:31 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/22 14:52:02 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/26 15:37:38 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf_long_double(const char *format,va_list arg, t_flags *flags)
+/*int		ft_printf_long_double(const char *format,va_list arg, t_flags *flags)
 {
 	long double nbr;
 	int tmp;

@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf_long_double.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/07 17:03:21 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/26 17:27:54 by hugsbord         ###   ########.fr       */
+/*   Created: 2019/03/26 15:43:38 by hugsbord          #+#    #+#             */
+/*   Updated: 2019/03/26 17:18:17 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		main(void)
+int		ft_printf_long_double(const char *format,va_list arg, t_flags *flags)
 {
-//	ft_atoi_base(42);
-//	ft_printf("ii %s ii",  NULL);
-//
-//	ft_putchar('\n');
-//	printf("ii %s ii", NULL);
-//	ft_printf("%10.5d",  -42);
+	long double nbr;
+	int tmp;
 
-//	ft_putchar('\n');
-//	printf("%10.5d", -42);
-//	ft_putchar('\n');
-
-	ft_printf("%0+5d", 42);
-
-	ft_putchar('\n');
-	printf("%0+5d", 42);
-
-//	printf("%10s", "test");
-	return (0);
+	nbr = va_arg(arg, long double);
+	tmp = nbr;
+	ft_putnbr(tmp);
+	nbr = (nbr - tmp) * 1000000 + 0.5;
+	ft_putchar('.');
+	tmp = nbr;
+	ft_putnbr(tmp);
+	return (SUCCESS);
 }
