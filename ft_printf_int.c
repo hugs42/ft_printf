@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:23:40 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/26 17:35:27 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:08:32 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,17 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 			count_char++;
 		}
 	}
-	ft_printf_putnbr(i, flags, len_nbr);
+	if ((i == 0) && (flags->precision == 0) && (flags->is_precision == 1))
+	{
+		if ((i == 0) && (flags->precision == 0) && (flags->is_precision == 1) && (flags->width > len_nbr))
+		{
+			count_char++;
+			ft_putchar(' ');
+		}
+		count_char -= 1;
+	}
+	else
+		ft_printf_putnbr(i, flags, len_nbr);
 	width = flags->width;
 	count_char += len_nbr;
 	if (minus == 1)

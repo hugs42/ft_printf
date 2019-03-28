@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:29:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/07 18:14:56 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/28 15:50:48 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,10 @@ int		ft_get_precision(const char *format, int i)
 		j++;
 	}
 	tmp_precision[j] = '\0';
-	//printf("@%s@", tmp_precision);
 	precision = ft_atoi(tmp_precision);
 	free(tmp_precision);
-//;;;	printf("==%d", precision);
 	if (!precision)
-		return (1);
+		return (0);
 	else
 	{
 		return (precision);
@@ -104,10 +102,4 @@ int		ft_get_width(const char *format, int i)
 	width = ft_atoi(tmp_digit);
 	free(tmp_digit);
 	return (width);
-}
-
-int		ft_format_specifiers(const char *format, int i, t_flags *flags)
-{
-	
-	return (0);
 }
