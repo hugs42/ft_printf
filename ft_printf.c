@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 11:49:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/22 16:04:54 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:19:28 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		ft_printf_diouxx_case(const char *format, va_list arg, int i, t_flags *flag
 		count_char += ft_printf_hex(format, arg, format[i], flags);
 	return (count_char);
 }
-#include <stdio.h>
 
 int		ft_printf_parse(const char *format, va_list arg)
 {
@@ -98,6 +97,8 @@ int		ft_printf_parse(const char *format, va_list arg)
 				else
 					flags->precision = 0;
 			}
+			if (format[i] == 'l' || format[i] == 'L' || format[i] == 'h')
+				ft_set_specifier(format, i, flags);
 			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p')
 				count_char += ft_printf_csp_case(format, arg, i, flags);
 			if (ft_is_diouxx(format, arg, i))
@@ -128,7 +129,6 @@ int		ft_printf_parse(const char *format, va_list arg)
 						count_char++;
 					}
 			}
-//			count_char++;
 			i++;
 		}
 		else
@@ -137,7 +137,6 @@ int		ft_printf_parse(const char *format, va_list arg)
 			count_char++;
 			i++;
 		}
-//		count_char = i;
 	}
 	return (count_char);
 }
@@ -148,7 +147,6 @@ int		ft_printf(const char *format, ...)
 	va_list ap;
 	va_start(ap, format);
 	count_char = ft_printf_parse(format, ap);
-//	printf("\n%d\n", count_char);
 	va_end(ap);
 	return (count_char);
 }

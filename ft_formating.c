@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 14:29:49 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/28 15:50:48 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:26:36 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ int		ft_set_flags(const char *format, int i, t_flags *flags)
 
 int		ft_set_specifier(const char *format, int i, t_flags *flags)
 {
-	if ((format[i] == 'l' && format[i] != 'l') || format[i] == 'L')
+	if ((format[i] == 'l' && format[i + 1] != 'l') || format[i] == 'L')
 		flags->l = 1;
 	else
 		flags->l = 0;
-	if (format[i] == 'l' && format[i] == 'l')
+	if (format[i] == 'l' && format[i + 1] == 'l')
 		flags->ll = 1;
 	else
 		flags->ll = 0;
-	if (format[i] == 'h' && format[i] != 'h')
+	if (format[i] == 'h' && format[i + 1] != 'h')
 		flags->h = 1;
 	else
 		flags->h = 0;
-	if (format[i] == 'h' && format[i] == 'h')
+	if (format[i] == 'h' && format[i + 1] == 'h')
 		flags->hh = 1;
 	else
 		flags->hh = 0;

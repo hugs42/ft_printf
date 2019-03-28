@@ -6,15 +6,21 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:23:40 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/28 16:08:32 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:34:31 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int				ft_printf_int_checker(const char *format, va_list arg, t_flags *flags)
+{
+	
+}
+
 int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 {
 	int i;
+	long	li;
 	int width;
 	int len_nbr;
 	int prec = 0;
@@ -30,7 +36,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	minus = flags->minus;
 	c = ' ';
 	len_nbr = ft_strlen(ft_itoa(i));
-	if (flags->zero > 0)// && (flags->width <= ft_strlen(ft_itoa(i))))
+	if (flags->zero > 0)
 		c = '0';
 	if ((flags->zero > 0) && (flags->width >= ft_strlen(ft_itoa(i))) && (flags->precision > len_nbr))
 		c = ' ';
@@ -66,6 +72,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		ft_putchar(' ');
 	else
 		count_char --;
+
 	count_char++;
 	len_nbr = ft_strlen(ft_itoa(i));
 //	if (flags->is_negative == 1)
@@ -78,16 +85,12 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	{
 		if ((width > len_nbr)  && (flags->precision < len_nbr))
 		{
-			if (flags->plus == 1) /*&& flags->width > ft_strlen(ft_itoa(i))*/
+			if (flags->plus == 1)
 			{
 				if (flags->is_negative == 1)
 					len_nbr-=2;
 				else if (flags->is_negative == 0)
 					len_nbr-=1;
-//			else if (flags->plus == 1 /*&& flags->width > ft_strlen(ft_itoa(i)) */&& flags->is_negative == 1)
-//				len_nbr-=2;
-//			else if (flags->plus == 1)
-//				len_nbr-=5;
 			}
 		count_char += ft_putwidth(c, len_nbr, flags);
 		}

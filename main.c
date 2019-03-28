@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 17:03:21 by hugsbord          #+#    #+#             */
-/*   Updated: 2019/03/28 16:03:36 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:01:22 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		main(void)
 {
-	ft_printf("@moulitest: %.d %.0d", 0, 0);
+	ft_printf("%ld", 4294967296);
 	ft_putchar('\n');
-	printf("@moulitest: %.d %.0d", 0, 0);
+	printf("%ld", 4294967296);
 //	ft_printf("%ld", -2147483649);
 //	ft_putchar('\n');
 //	printf("%ld", -2147483649);
