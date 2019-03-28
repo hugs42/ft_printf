@@ -30,8 +30,10 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	minus = flags->minus;
 	c = ' ';
 	len_nbr = ft_strlen(ft_itoa(i));
-	if (flags->zero > 0)
+	if (flags->zero > 0)// && (flags->width <= ft_strlen(ft_itoa(i))))
 		c = '0';
+	if ((flags->zero > 0) && (flags->width >= ft_strlen(ft_itoa(i))) && (flags->precision > len_nbr))
+		c = ' ';
 	if ((flags->plus == 1) && (i >= 0))
 	{
 		len_nbr++;
@@ -39,6 +41,8 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	}
 	if (i < 0)
 		flags->is_negative = 1;
+	else
+		flags->is_negative = 0;
 	if (flags->minus == 1 && flags->zero == 1)
 		c = ' ';
 	if ((flags->space == 1) && (flags->width == 0) && (i >= 0))
@@ -52,7 +56,7 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		ft_putchar('+');
 	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 0) && (flags->zero == 1))
 		ft_putchar('+');
-	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->zero == 0))
+	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->zero == 0) && (flags->precision < len_nbr))
 		ft_putchar('+');
 	else if ((flags->plus == 1) && (i >= 0) && (flags->width > 0) && (flags->minus == 1) && (flags->zero == 1))
 		ft_putchar('+');
@@ -64,7 +68,11 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		count_char --;
 	count_char++;
 	len_nbr = ft_strlen(ft_itoa(i));
-	if ((i < 0) &&  (flags->zero > 0))
+//	if (flags->is_negative == 1)
+//		len_nbr--;
+	if ((i < 0) &&  (flags->zero > 0) && (flags->precision <= len_nbr))
+		ft_putchar('-');
+	else if ((i < 0) &&  (flags->zero == 0) && (flags->precision > len_nbr))
 		ft_putchar('-');
 	if (flags->minus == 0)
 	{
@@ -73,9 +81,9 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 			if (flags->plus == 1) /*&& flags->width > ft_strlen(ft_itoa(i))*/
 			{
 				if (flags->is_negative == 1)
-					len_nbr-=1;
+					len_nbr-=2;
 				else if (flags->is_negative == 0)
-					len_nbr+=2;
+					len_nbr-=1;
 //			else if (flags->plus == 1 /*&& flags->width > ft_strlen(ft_itoa(i)) */&& flags->is_negative == 1)
 //				len_nbr-=2;
 //			else if (flags->plus == 1)
@@ -84,7 +92,11 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 		count_char += ft_putwidth(c, len_nbr, flags);
 		}
 		else if ((width > len_nbr) && (flags->precision > len_nbr))
+		{
+			if (i < 0)
+				len_nbr--;
 			count_char += ft_putwidth(c, flags->precision, flags);
+		}
 	}
 	if ((flags->plus == 1) && (i >= 0) && (flags->zero == 0))
 	{
@@ -94,8 +106,10 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 	len_nbr = ft_strlen(ft_itoa(i));
 	prec = flags->precision;
 	int prec_len = 0;
-	if (prec > len_nbr)
+	if (prec >= len_nbr)
 	{
+		if ((flags->zero == 1) && (flags->precision == len_nbr + 1) && (flags->width > len_nbr))
+			prec--;
 		while (prec > len_nbr)
 		{
 			ft_putchar('0');
@@ -103,8 +117,11 @@ int				ft_printf_int(const char *format, va_list arg, t_flags *flags)
 			prec--;
 			prec_len++;
 		}
-		if (flags->zero == 1)
+		if ((flags->zero == 1) || ((flags->precision > len_nbr) && flags->is_negative == 1))
+		{
 			ft_putchar('0');
+			count_char++;
+		}
 	}
 	ft_printf_putnbr(i, flags, len_nbr);
 	width = flags->width;

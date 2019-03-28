@@ -14,22 +14,8 @@
 
 int		main(void)
 {
-//	ft_atoi_base(42);
-//	ft_printf("ii %s ii",  NULL);
-//
-//	ft_putchar('\n');
-//	printf("ii %s ii", NULL);
-//	ft_printf("%10.5d",  -42);
-
-//	ft_putchar('\n');
-//	printf("%10.5d", -42);
-//	ft_putchar('\n');
-
-	ft_printf("%0+5d", 42);
-
+	ft_printf("@moulitest: %5.1d", 1);
 	ft_putchar('\n');
-	printf("%0+5d", 42);
-
-//	printf("%10s", "test");
+	printf("@moulitest: %5.1d", 1);
 	return (0);
 }

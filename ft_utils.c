@@ -144,13 +144,12 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 			count_char++;
 			width--;
 		}
-
 		if (flags->plus == 1  && flags->zero == 0 && flags->flag != 'c' && flags->flag != 'p' && flags->flag !='s' && flags->flag != 'd')
 			ft_putchar(' ');
 //		if (flags->precision>len && flags->is_negative == 1)
 //			ft_putchar('-');
 		else if ((flags->plus == 0) && (flags->space == 1))
-			return (SUCCESS);
+			return (count_char);
 		else if (flags->is_negative == 1 && flags->precision > flags->len)
 			ft_putchar('-');
 		else if (flags->plus != 1)
@@ -165,8 +164,10 @@ int		ft_putwidth(char c, int len, t_flags *flags)
 			ft_putchar(' ');
 			count_char++;
 		}
-		if (flags->plus == 1 && flags->zero == 0 && flags->flag != 'c' && flags->flag != 's' && flags->flag != 'p')
-			ft_putchar('2');
+		if (flags->plus == 1 && flags->zero == 0 && flags->flag != 'c' && flags->flag != 's' && flags->flag != 'p' && flags->flag != 'd' && flags->flag != 'i')
+			ft_putchar(' ');
+		else if ((flags->plus == 1 && flags->zero == 0 && flags->flag != 'c' && flags->flag != 's' && flags->flag != 'p') && (flags->flag == 'd' || flags->flag == 'i'))
+			return (count_char);
 		else
 			ft_putchar(' ');
 		count_char++;
