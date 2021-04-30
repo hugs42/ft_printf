@@ -6,20 +6,9 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 14:26:04 by hugsbord          #+#    #+#             */
-/*   Updated: 2018/01/30 11:32:45 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:16:34 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** FT_MEMCMP 000000000000000000000000000000000000000000000000000000000000000000
-**
-**            compare les n premiers octets des zones mémoire s1 et s2. Elle
-**            renvoie un entier inférieur, égal, ou supérieur à zéro, si s1 est
-**           respectivement inférieure, égale ou supérieur à s2
-**
-**
-**00000000000000000000000000000000000000000000000000000000000000000000000000000
-*/
 
 #include "libft.h"
 

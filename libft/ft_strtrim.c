@@ -6,28 +6,49 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:38:43 by hugsbord          #+#    #+#             */
-/*   Updated: 2018/02/03 13:10:44 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/11/21 17:35:00 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static int		ft_is_set(char const c, char const *set)
+{
+	int i;
+
+	i = 0;
+	while (set[i] != '\0')
+	{
+		if (c == set[i])
+			return (1);
+		else
+			i++;
+	}
+	return (0);
+}
+
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	min;
 	size_t	max;
 	size_t	len;
+	char	*buff;
 
-	if (!s)
+	buff = NULL;
+	if ((!s1) || (!set))
 		return (NULL);
 	min = 0;
-	while (s[min] && (ft_isspace(s[min])))
+	while (s1[min] != '\0' && (ft_is_set(s1[min], set) == 1))
 		min++;
-	max = ft_strlen(s);
-	while (min < max && (ft_isspace(s[max - 1])))
+	max = ft_strlen(s1);
+	while (min < max && (ft_is_set(s1[max - 1], set)))
 		max--;
 	if (min == max)
-		return (ft_strnew(1));
+	{
+		buff = (char*)malloc(sizeof(char) * 1);
+		buff[0] = '\0';
+		return (buff);
+	}
 	len = max - min;
-	return (ft_strsub(s, min, len));
+	return (ft_substr(s1, min, len));
 }

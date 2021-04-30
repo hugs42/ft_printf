@@ -5,131 +5,70 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/02/01 12:18:47 by hugsbord          #+#    #+#              #
-#    Updated: 2019/03/26 15:40:04 by hugsbord         ###   ########.fr        #
+#    Created: 2019/12/19 16:51:29 by hugsbord          #+#    #+#              #
+#    Updated: 2020/02/19 16:22:54 by hugsbord         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAG = -Wall -Wextra #-Werror
-
-HEADER = libft/libft.h ft_printf.h
-
-INC_PATH = libft/
-
-INCLUDE =  $(HEADER)
-
-CPPFLAGS = -I $(INCLUDE)
-
 NAME = libftprintf.a
 
-SRC_PATH = libft/
+INCLUDES = ./includes/*.h
 
-SRC = $(addprefix $(SRC_PATH), $(SRC_LIBFT)) $(SRC_PRINTF)
+NAMELIB = libft.a
 
-SRC_LIBFT =	ft_atoi.c	\
-			ft_bzero.c	\
-			ft_toupper.c\
-			ft_tolower.c\
-			ft_swap.c	\
-			ft_strtrim.c\
-			ft_strsub.c	\
-			ft_strstr.c	\
-			ft_strsplit.c\
-			ft_strrchr.c\
-			ft_strnstr.c\
-			ft_strnew.c	\
-			ft_strnequ.c\
-			ft_strndup.c\
-			ft_strncpy.c\
-			ft_strncmp.c\
-			ft_strncat.c\
-			ft_strmapi.c\
-			ft_strmap.c	\
-			ft_strlen.c	\
-			ft_strlcat.c\
-			ft_strjoin.c\
-			ft_striteri.c\
-			ft_striter.c\
-			ft_strequ.c	\
-			ft_strdup.c	\
-			ft_strdel.c	\
-			ft_strcpy.c	\
-			ft_strcmp.c	\
-			ft_strclr.c	\
-			ft_strchr.c	\
-			ft_strcat.c	\
-			ft_putstr.c	\
-			ft_putstr_fd.c\
-			ft_putnbr.c	\
-			ft_putnbr_fd.c	\
-			ft_putendl.c\
-			ft_putendl_fd.c	\
-			ft_putchar.c\
-			ft_putchar_fd.c	\
-			ft_memset.c	\
-			ft_memmove.c	\
-			ft_memdel.c	\
-			ft_memcpy.c	\
-			ft_memcmp.c	\
-			ft_memchr.c	\
-			ft_memccpy.c	\
-			ft_memalloc.c	\
-			ft_lstnew.c	\
-			ft_lstmap.c	\
-			ft_lstiter.c	\
-			ft_lstdelone.c	\
-			ft_lstdel.c	\
-			ft_lstadd.c	\
-			ft_itoa.c	\
-			ft_isprint.c	\
-			ft_isdigit.c	\
-			ft_isascii.c	\
-			ft_isalpha.c	\
-			ft_isalnum.c	\
-			ft_isspace.c	\
-			ft_islower.c	\
-			ft_isupper.c \
+FLAGS = -Wall -Wextra -Werror
 
-SRC_PRINTF = ft_formating.c \
-			ft_printf_nbr.c \
-			ft_printf_int.c \
-			ft_printf_unsigned_int.c \
-			ft_utils.c \
-			ft_printf.c \
-			ft_printf_base_conv.c \
-			ft_printf_precision.c \
-			ft_printf_str.c \
-			ft_printf_char.c \
-			ft_printf_p_addr.c \
-			ft_printf_type_conversion.c \
-			ft_printf_octal.c \
-			ft_printf_double.c \
-			ft_printf_long_double.c \
+SRCS =	./srcs/ft_printf.c				\
+		./srcs/ft_parser.c				\
+		./srcs/ft_parser_utils.c		\
+		./srcs/ft_printf_char.c			\
+		./srcs/ft_printf_str.c			\
+		./srcs/ft_printf_addr.c			\
+		./srcs/ft_addr_utils.c			\
+		./srcs/ft_printf_int.c			\
+		./srcs/ft_int_utils.c			\
+		./srcs/ft_printf_hex.c			\
+		./srcs/ft_hex_utils.c			\
+		./srcs/ft_printf_unsigned_int.c	\
+		./srcs/ft_printf_percent.c		\
+		./srcs/ft_utils.c				\
+		./srcs/ft_utils2.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = *.o *SORTED
+
+_END=$'\x1b[0m
+_BOLD=$'\x1b[1m
+_UNDER=$'\x1b[4m
+_REV=$'\x1b[7m
+_GREY=$'\x1b[30m
+_RED=$'\x1b[31m
+_GREEN=$'\x1b[32m
+_YELLOW=$'\x1b[33m
+_BLUE=$'\x1b[34m
+_PURPLE=$'\x1b[35m
+_CYAN=$'\x1b[36m
+_WHITE=$'\x1b[37m
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@echo "libft creation :"
+$(NAMELIB):
+	@make -C ./libft
+	@cp ./libft/$(NAMELIB) .
+	
+$(NAME):$(NAMELIB)
+	@ar -x libft.a
+	@gcc $(FLAGS) -c $(SRCS) -I $(INCLUDES)
 	@ar rc $(NAME) $(OBJ)
-	@echo "$(NAME) created ..."
 	@ranlib $(NAME)
-	@echo "$(NAME) correctly indexed"
-
-$(OBJ) : $(INCLUDE)
-
-%.o: %.c
-	@gcc $(FLAG) -c $< -o $@
+	@echo "$(_BOLD)libftprintf.a$(_END) $(_BOLD)$(_GREEN)correctly created$(_END)"
 
 clean:
+	@make clean -C libft
 	@rm -f $(OBJ)
-	@echo "OBJ (.o) removed"
+	@rm -f libft.a
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "$(NAME) removed"
+	@make fclean -C libft
+	@rm -f *.a
 
 re: fclean all
-
-.PHONY: all, clean, fclean, re

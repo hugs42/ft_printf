@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 10:10:37 by hugsbord          #+#    #+#             */
-/*   Updated: 2018/02/02 19:39:08 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/11/19 14:20:56 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int			ft_atoi(const char *str)
 {
 	int		i;
 	int		sign;
-	int		result;
+	int		res;
 
 	i = 0;
-	result = 0;
+	res = 0;
 	sign = 1;
 	while ((str[i] == 32) || (str[i] >= 9 && str[i] <= 13))
 		i++;
@@ -31,9 +31,9 @@ int			ft_atoi(const char *str)
 	}
 	while (ft_isdigit(str[i]))
 	{
-		result = result * 10 + str[i] - 48;
+		res = res * 10 + str[i] - 48;
 		i++;
 	}
-	result *= sign;
-	return (result);
+	res *= sign;
+	return (res);
 }

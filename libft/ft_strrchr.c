@@ -6,7 +6,7 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 15:12:14 by hugsbord          #+#    #+#             */
-/*   Updated: 2018/02/02 14:58:04 by hugsbord         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:13:59 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,14 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	char	*ptr;
+	ssize_t		len;
 
-	i = 1;
-	while (s[i] != '\0')
-		i++;
-	while (1)
+	len = ft_strlen(s);
+	while (len >= 0)
 	{
-		if (s[i] == c)
-		{
-			ptr = &((char *)s)[i];
-			return (ptr);
-		}
-		if (!i)
-			break ;
-		i--;
+		if (s[len] == c)
+			return ((char *)s + len);
+		len--;
 	}
 	return (NULL);
 }

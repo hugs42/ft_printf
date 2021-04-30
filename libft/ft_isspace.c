@@ -14,7 +14,7 @@
 
 int		ft_isspace(size_t c)
 {
-	if (c == 32 || c == '\n' || c == '\t')
+	if (c == 32 || (c >= 10 && c <= 13) || c == '\n' || c == '\t')
 		return (1);
 	else
 		return (0);
